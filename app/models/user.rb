@@ -6,8 +6,6 @@ class User < ApplicationRecord
 
   enum access_group: { regular: 0, admin: 5}
 
-  validates :email, format: { with: /[A-Za-z0-9+_.-]+@sistemadefrete.com.br/ }
-
   def description
     "#{name} - #{email}"
   end

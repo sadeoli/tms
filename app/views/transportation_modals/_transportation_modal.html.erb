@@ -1,0 +1,22 @@
+
+<div>
+<dl class="row">
+<dt class="col-sm-3"><%=TransportationModal.human_attribute_name(:max_distance)%></dt>
+<dd class="col-sm-9"><%=transportation_modal.max_distance%>km</dd>
+
+<dt class="col-sm-3"><%=TransportationModal.human_attribute_name(:min_distance)%></dt>
+<dd class="col-sm-9"><%=transportation_modal.min_distance%>km</dd>
+
+<dt class="col-sm-3"><%=TransportationModal.human_attribute_name(:max_weight)%></dt>
+<dd class="col-sm-9"><%=transportation_modal.max_weight%>kg</dd>
+
+<dt class="col-sm-3"><%=TransportationModal.human_attribute_name(:min_weight)%></dt>
+<dd class="col-sm-9"><%=transportation_modal.min_weight%>kg</dd>
+
+<dt class="col-sm-3"><%=TransportationModal.human_attribute_name(:flat_rate)%></dt>
+<dd class="col-sm-9"><%=number_to_currency(transportation_modal.flat_rate)%></dd>
+
+<dt class="col-sm-3"><%=TransportationModal.human_attribute_name(:status)%></dt>
+<dd class="col-sm-9"><%=transportation_modal.status.upcase%></dd>
+</dl>
+</div>

@@ -1,0 +1,13 @@
+<h2>Modalidades de Transporte</h2>
+<% if current_user.admin? %>
+    <%= link_to 'Cadastrar', new_transportation_modal_path, class:"btn btn-primary"%>
+<% end %>
+
+<% if @transportation_modals.any? %>
+
+    <% @transportation_modals.each do |tsp_modal|%>
+        
+        <h3> <%=link_to tsp_modal.name, tsp_modal%> </h3>
+    <%= render partial: "transportation_modal", collection: @transportation_modals%>
+    <% end %>
+<% end %>

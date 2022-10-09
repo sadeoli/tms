@@ -1,0 +1,57 @@
+<form>
+<%= form_with model: @transportation_modal do |f|%>
+  <div class="row mb-3">
+    <%= f.label :name, {class: "col-sm-2 col-form-label"}%>
+    <div class="col-sm-10">
+        <%= f.text_field :name, {class: "form-control"}%>
+    </div>
+  </div>
+    <div class="row mb-3">
+    <%= f.label :max_distance, {class: "col-sm-2 col-form-label"}%>
+    <div class="col-sm-10">
+        <div class="input-group">
+        <%= f.number_field :max_distance, {class: "form-control"}%>
+        <span class="input-group-text">km</span>
+        </div>
+    </div>
+  </div>
+    <div class="row mb-3">
+    <%= f.label :min_distance, {class: "col-sm-2 col-form-label"}%>
+    <div class="col-sm-10">
+    <div class="input-group">
+        <%= f.number_field :min_distance, {class: "form-control"}%>
+        <span class="input-group-text">km</span>
+        </div>
+    </div>
+  </div>
+    <div class="row mb-3">
+    <%= f.label :max_weight, {class: "col-sm-2 col-form-label"}%>
+    <div class="col-sm-10">
+    <div class="input-group">
+        <%= f.number_field :max_weight, {class: "form-control"}%>
+        <span class="input-group-text">kg</span>
+        </div>
+    </div>
+  </div>
+    <div class="row mb-3">
+    <%= f.label :min_weight, {class: "col-sm-2 col-form-label"}%>
+    <div class="col-sm-10">
+    <div class="input-group">
+        <%= f.number_field :min_weight, {class: "form-control"}%>
+        <span class="input-group-text">kg</span>
+        </div>
+    </div>
+  </div>
+      <div class="row mb-3">
+    <%= f.label :flat_rate, {class: "col-sm-2 col-form-label"}%>
+    <div class="col-sm-10">
+    <div class="input-group">
+        <span class="input-group-text">R$</span>
+        <%= f.number_field :flat_rate, {class: "form-control"}%>
+        </div>
+    </div>
+  </div>
+
+  <button type="submit" class="btn btn-primary">Cadastrar</button>
+</form>
+<% end %>
