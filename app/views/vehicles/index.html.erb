@@ -1,0 +1,35 @@
+<h2>Veículos</h2>
+
+<% if @vehicles.any? %>
+    <table class="table">
+    <thead>
+        <tr>
+        <th scope="col"><%= Vehicle.human_attribute_name(:license_plate)%></th>
+        <th scope="col"><%= Vehicle.human_attribute_name(:model)%></th>
+        <th scope="col"><%= Vehicle.human_attribute_name(:brand)%></th>
+        <th scope="col"><%= Vehicle.human_attribute_name(:max_weight)%></th>
+        <th scope="col"><%= Vehicle.human_attribute_name(:manufacture_year)%></th>
+        <th scope="col"><%= Vehicle.human_attribute_name(:transportation_modal)%></th>
+        <th scope="col"><%= Vehicle.human_attribute_name(:status)%></th>
+        </tr>
+    </thead>
+    <tbody>
+    <% @vehicles.each do |vehicle|%>
+        <tr>
+        <th scope="row"><%=vehicle.license_plate%></th>
+        <td><%=vehicle.model%></td>
+        <td><%=vehicle.brand%></td>
+        <td><%=vehicle.max_weight%>kg</td>
+        <td><%=vehicle.manufacture_year%></td>
+        <td><%=vehicle.transportation_modal.name%></td>
+        <td><%=vehicle.status.upcase%></td>
+        </tr>
+        <% end %>
+    </tbody>
+    </table>
+<% end %>
+
+<% if current_user.admin? %>
+    <%= link_to 'Cadastrar', new_vehicle_path, class:"btn btn-primary"%>
+<% end %>
+

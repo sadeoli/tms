@@ -13,11 +13,9 @@ describe 'Usuario se autentica' do
         
         # Assert
         expect(page).to have_content 'Login efetuado com sucesso.'
-        within('nav') do
-            expect(page).not_to have_link '[Entrar]'
-            expect(page).to have_button 'Sair'
-            expect(page).to have_content 'Usuário - usuario@sistemadefrete.com.br'
-        end
+        expect(page).not_to have_link '[Entrar]'
+        expect(page).to have_button 'Sair'
+        expect(page).to have_content 'Usuário - usuario@sistemadefrete.com.br'
     end
 
     it 'e faz logout' do
@@ -33,11 +31,10 @@ describe 'Usuario se autentica' do
         
         # Assert
         expect(page).to have_content 'Para continuar, faça login ou registre-se.'
-        within('nav') do
-            expect(page).to have_link '[Entrar]'
-            expect(page).not_to have_button 'Sair'
-            expect(page).not_to have_content 'Usuário - usuario@sistemadefrete.com.br'
-        end
+        expect(page).to have_link '[Entrar]'
+        expect(page).not_to have_button 'Sair'
+        expect(page).not_to have_content 'Usuário - usuario@sistemadefrete.com.br'
+        
         
     end
 end
