@@ -18,9 +18,9 @@ describe 'Usuario vê Modalidade de Transporte' do
     it 'e vê modalidades de transporte cadastradas' do
         # Arrange
         transportation_modal1 = TransportationModal.create!(name: 'Bicicleta', max_distance: 10 , min_distance: 1,
-                    max_weight: 8, min_weight: 0, flat_rate: 5, status: :ativo)
+                    max_weight: 8, min_weight: 0, flat_rate: 5, status: :active)
         transportation_modal2 = TransportationModal.create!(name: 'Motocicleta', max_distance: 100 , min_distance: 11,
-                        max_weight: 20, min_weight: 0, flat_rate: 15, status: :ativo)
+                        max_weight: 20, min_weight: 0, flat_rate: 15, status: :active)
         user = User.create!(email: 'usuario@sistemadefrete.com.br', password: 'password')
 
         # Act

@@ -10,7 +10,34 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_09_141853) do
+ActiveRecord::Schema[7.0].define(version: 2022_10_09_230349) do
+  create_table "costs", force: :cascade do |t|
+    t.integer "type"
+    t.integer "maximum"
+    t.integer "minimum"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "service_orders", force: :cascade do |t|
+    t.string "code"
+    t.string "pickup_addres"
+    t.string "product_code"
+    t.integer "weight"
+    t.integer "width"
+    t.integer "height"
+    t.integer "depth"
+    t.string "recipient_name"
+    t.string "recipient_address"
+    t.string "recipient_phone"
+    t.integer "distance"
+    t.integer "delivery_time"
+    t.integer "status", default: 0
+    t.integer "total_cost"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "transportation_modals", force: :cascade do |t|
     t.string "name"
     t.integer "max_distance"

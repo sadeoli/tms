@@ -22,7 +22,7 @@
         <td><%=vehicle.max_weight%>kg</td>
         <td><%=vehicle.manufacture_year%></td>
         <td><%=vehicle.transportation_modal.name%></td>
-        <td><%=vehicle.status.upcase%></td>
+        <td><%=I18n.t(vehicle.status).upcase%></td>
         </tr>
         <% end %>
     </tbody>

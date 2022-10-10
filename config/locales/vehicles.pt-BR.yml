@@ -1,4 +1,7 @@
 pt-BR:
+  active: "Ativo"
+  working: "Operando"
+  maintenance: "Em manutenção"
   activerecord:
     models:
       vehicle: 

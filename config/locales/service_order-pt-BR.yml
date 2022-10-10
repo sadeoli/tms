@@ -1,0 +1,26 @@
+pt-BR:
+  pending: 'Pendente'
+  intransit: 'Em entrega'
+  ontime: 'Entrege no prazo'
+  delayed: 'Entregue com atraso'
+  activerecord:
+    models:
+      service_order: 
+        one: 'Ordem de Serviço'
+        other: 'Ordens de Serviço'
+    attributes:
+      service_order:
+        code: 'Código'
+        weight: 'Peso'
+        height: 'Altura'
+        depth: 'Profundidade'
+        width: 'Largura'
+        pickup_address: 'Endereço de Retirada'
+        product_code: 'Código do Produto'
+        recipient_name: 'Nome do Destinatário'
+        recipient_address: 'Endereço do Destinatário'
+        recipient_phone: 'Telefone do Destinatário'
+        distance: 'Distância'
+        delivery_time: 'Prazo de Entrega'
+        status: 'Status'
+        total_cost: 'Total'

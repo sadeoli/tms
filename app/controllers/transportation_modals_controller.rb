@@ -26,7 +26,7 @@ class TransportationModalsController < ApplicationController
     def show;end
 
     def inactived
-        @transportation_modal.inativo!
+        @transportation_modal.inactive!
         redirect_to @transportation_modal
     end
 

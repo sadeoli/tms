@@ -4,12 +4,12 @@ describe 'Usuario vê a lista de veículos' do
     it 'com sucesso' do
         # Arrange
         transportation_modal = TransportationModal.create!(name: 'Bicicleta', max_distance: 10 , min_distance: 1,
-                                                        max_weight: 8, min_weight: 0, flat_rate: 5, status: :ativo)
+                                                        max_weight: 8, min_weight: 0, flat_rate: 5, status: :active)
         user = User.create!(email: 'usuario@sistemadefrete.com.br', password: 'password')
         vehicle_1 = Vehicle.create!(license_plate: 'HUIK-5232', model: 'City Tour', brand: 'Caloi', max_weight: '5', 
-                                    manufacture_year: '2015', transportation_modal:transportation_modal, status: :ativo)
+                                    manufacture_year: '2015', transportation_modal:transportation_modal, status: :active)
         vehicle_2 = Vehicle.create!(license_plate: 'HHDU-8946', model: 'GTS', brand: 'Shimano', max_weight: '7', 
-            manufacture_year: '2017', transportation_modal:transportation_modal, status: :operando)
+            manufacture_year: '2017', transportation_modal:transportation_modal, status: :working)
 
         # Act
         login_as user 

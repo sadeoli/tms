@@ -47,10 +47,16 @@
             <a class="nav-link active" aria-current="page" href="#">Home</a>
           </li>
           <li class="nav-item">
+            <%= link_to 'Ordens de Serviço', service_orders_path, class:"nav-link" %>
+          </li>
+          <li class="nav-item">
             <%= link_to 'Modalidade de Transporte', transportation_modals_path, class:"nav-link" %>
           </li>
           <li class="nav-item">
             <%= link_to 'Veículos', vehicles_path, class:"nav-link" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'Tarifas', costs_path, class:"nav-link" %>
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">

@@ -1,0 +1,30 @@
+<h2>Ordens de Serviço</h2>
+
+<% if @service_orders.any? %>
+    <table class="table">
+    <thead>
+        <tr>
+        <th scope="col"><%= ServiceOrder.human_attribute_name(:code)%></th>
+        <th scope="col"><%= ServiceOrder.human_attribute_name(:weight)%></th>
+        <th scope="col"><%= ServiceOrder.human_attribute_name(:distance)%></th>
+        <th scope="col">Dimensões</th>
+        <th scope="col"><%= ServiceOrder.human_attribute_name(:status)%></th>
+        </tr>
+    </thead>
+    <tbody>
+    <% @service_orders.each do |so|%>
+        <tr>
+        <th scope="row"><%=so.code%></th>
+        <td><%=so.weight%>kg</td>
+        <td><%=so.distance%>km</td>
+        <td><%= so.width %>x<%= so.depth %>x<%= so.height %>cm</td>
+        <td><%=I18n.t(so.status).upcase%></td>
+        </tr>
+        <% end %>
+    </tbody>
+    </table>
+<% end %>
+
+<% if current_user.admin? %>
+    <%= link_to 'Cadastrar', new_service_order_path, class:"btn btn-primary"%>
+<% end %>
