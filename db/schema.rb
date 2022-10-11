@@ -10,13 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_09_230349) do
+ActiveRecord::Schema[7.0].define(version: 2022_10_11_023637) do
   create_table "costs", force: :cascade do |t|
-    t.integer "type"
+    t.integer "category"
     t.integer "maximum"
     t.integer "minimum"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "unit_price"
+    t.integer "transportation_modal_id", null: false
+    t.index ["transportation_modal_id"], name: "index_costs_on_transportation_modal_id"
   end
 
   create_table "service_orders", force: :cascade do |t|
@@ -77,5 +80,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_09_230349) do
     t.index ["transportation_modal_id"], name: "index_vehicles_on_transportation_modal_id"
   end
 
+  add_foreign_key "costs", "transportation_modals"
   add_foreign_key "vehicles", "transportation_modals"
 end

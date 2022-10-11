@@ -1,0 +1,16 @@
+pt-BR:
+  weight: "Peso (kg)"
+  distance: "Distância (km)"
+  activerecord:
+    models:
+      cost: 
+        one: 'Custo'
+        other: 'Custos'
+    attributes:
+      cost:
+        category: "Categoria"
+        maximum: "Máximo"
+        minimum: 'Mínimo'
+        unit_price: "Preço Unitário"
+        transportation_modal: "Modalidade de Transporte"
+        transportation_modal_id: "Modalidade de Transporte"

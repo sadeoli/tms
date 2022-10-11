@@ -8,6 +8,7 @@ class CostsController < ApplicationController
     end
 
     def new
+        @transportation_modals = TransportationModal.all
         @cost = Cost.new
     end
 
@@ -19,6 +20,6 @@ class CostsController < ApplicationController
 
     
     def cost_params
-        params.require(:cost).permit(:type, :maximum, :mininum)
+        params.require(:cost).permit(:category, :maximum, :minimum, :unit_price, :transportation_modal)
     end
 end

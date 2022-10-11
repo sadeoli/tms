@@ -1,3 +1,49 @@
+<p class="h2 mt-4">Preços Unitários</p>
+
+<% if @costs.weight.any? %>
+<p class="h3 mt-4"> Peso</p>
+    <table class="table m-4">
+    <thead>
+        <tr>
+        <th scope="col"><%= Cost.human_attribute_name(:minimum)%></th>
+        <th scope="col"><%= Cost.human_attribute_name(:maximum)%></th>
+        <th scope="col"><%= Cost.human_attribute_name(:unit_price)%></th>
+        </tr>
+    </thead>
+    <tbody>
+    <% @costs.weight.order(:minimum).each do |c|%>
+        <tr>
+        <td><%=c.minimum%>kg</td>
+        <td><%=c.maximum%>kg</td>
+        <td>R$<%=c.unit_price %></td>
+        </tr>
+        <% end %>
+    </tbody>
+    </table>
+<% end %>
+
+<% if @costs.distance.any? %>
+<p class="h3 mt-4"> Distância</p>
+    <table class="table m-4">
+    <thead>
+        <tr>
+        <th scope="col"><%= Cost.human_attribute_name(:minimum)%></th>
+        <th scope="col"><%= Cost.human_attribute_name(:maximum)%></th>
+        <th scope="col"><%= Cost.human_attribute_name(:unit_price)%></th>
+        </tr>
+    </thead>
+    <tbody>
+    <% @costs.distance.order(:minimum).each do |c|%>
+        <tr>
+        <td><%=c.minimum%>km</td>
+        <td><%=c.maximum%>km</td>
+        <td>R$<%=c.unit_price %></td>
+        </tr>
+        <% end %>
+    </tbody>
+    </table>
+<% end %>
+
 <% if current_user.admin? %>
     <%= link_to 'Cadastrar', new_cost_path, class:"btn btn-primary"%>
 <% end %>

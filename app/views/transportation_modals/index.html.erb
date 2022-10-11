@@ -7,7 +7,7 @@
 
     <% @transportation_modals.each do |tsp_modal|%>
         
-        <h3> <%=link_to tsp_modal.name, tsp_modal%> </h3>
+        <p class="h3 mt-4"><%=link_to tsp_modal.name, tsp_modal%> </p>
     <%= render partial: "transportation_modal", collection: @transportation_modals%>
     <% end %>
 <% end %>

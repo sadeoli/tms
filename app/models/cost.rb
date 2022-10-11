@@ -1,3 +1,4 @@
 class Cost < ApplicationRecord
-    enum type: {weight: 2, distance:6}
+    enum category: {weight: 2, distance:6}
+    belongs_to :transportation_modal 
 end

@@ -1,0 +1,31 @@
+<%= form_with model: @cost do |f|%>
+<div class= "mt-4">
+    <strong> <%= f.label :transportation_modal_id %> </strong>
+    <%= f.collection_select :transportation_modal_id, TransportationModal.all, :id, :name%>
+</div>
+<div class= "mt-4">
+    <strong> <%= f.label :category %> </strong>
+    <%= f.select :category, options_for_select(Cost.categories.keys.map {|k| [I18n.t(k), k]})%>
+</div>
+
+<div class="row mt-4 mb-4">
+  <div class="col">
+        <%= f.label :minimum %>
+        <%= f.number_field :minimum, {class: "form-control"}%>
+  </div>
+  <div class="col">
+        <%= f.label :maximum %>
+        <%= f.number_field :maximum, {class: "form-control"}%>
+  </div>
+    <div class="col">
+        <%= f.label :unit_price %>
+        <div class="input-group">
+        <span class="input-group-text">R$</span>
+            <%= f.number_field :unit_price, {class: "form-control"}%>
+        </div>
+  </div>
+</div>
+  <div>
+    <%= f.submit 'Cadastrar', {class:"btn btn-primary"} %>
+  </div>
+<% end %>

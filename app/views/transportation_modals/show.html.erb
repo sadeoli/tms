@@ -4,7 +4,8 @@
 
 <% if current_user.admin? %>
     <div class="d-grid gap-2 d-md-block">
-    <%= link_to 'Editar', edit_transportation_modal_path(@transportation_modal), class:"btn btn-primary btn-sm"%>
-    <%= button_to 'Desativar', inactived_transportation_modal_path(@transportation_modal.id), class:"btn btn-primary btn-sm"%>
+    <%= link_to 'Editar', edit_transportation_modal_path(@transportation_modal), class:"btn btn-primary btn-sm m-2"%>
+    <%= button_to 'Desativar', inactived_transportation_modal_path(@transportation_modal.id), class:"btn btn-primary btn-sm m-2"%>
+    <%= link_to 'Configurar preço', new_cost_path, class:"btn btn-primary btn-sm m-2"%>
     </div>
 <% end %>
