@@ -1,2 +1,12 @@
 <h2>Cadastro de Preço Unitário</h2>
+
+<% if @cost.errors.any? %>
+    <p> Verifique os erros abaixo: </p>
+    <ul>
+    <% @cost.errors.full_messages.each do |msg| %>
+        <li><%= msg %> </li>
+    <% end %>
+    </ul>
+<%end%>
+
 <%= render 'form'%>

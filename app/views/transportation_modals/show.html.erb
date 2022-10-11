@@ -2,10 +2,57 @@
 
 <%= render @transportation_modal%>
 
+
+<p class="h2 mt-4">Preços Unitários</p>
+
+<% if @transportation_modal.costs.weight.any? %>
+<p class="display-6 mt-4"> Peso</p>
+    <table class="table m-4">
+    <thead>
+        <tr>
+        <th scope="col"><%= Cost.human_attribute_name(:minimum)%></th>
+        <th scope="col"><%= Cost.human_attribute_name(:maximum)%></th>
+        <th scope="col"><%= Cost.human_attribute_name(:unit_price)%></th>
+        </tr>
+    </thead>
+    <tbody>
+    <% @transportation_modal.costs.weight.order(:minimum).each do |c|%>
+        <tr>
+        <td><%=c.minimum%>kg</td>
+        <td><%=c.maximum%>kg</td>
+        <td>R$<%=c.unit_price %></td>
+        </tr>
+        <% end %>
+    </tbody>
+    </table>
+<% end %>
+
+<% if @transportation_modal.costs.distance.any? %>
+<p class="display-6 mt-4"> Distância</p>
+    <table class="table m-4">
+    <thead>
+        <tr>
+        <th scope="col"><%= Cost.human_attribute_name(:minimum)%></th>
+        <th scope="col"><%= Cost.human_attribute_name(:maximum)%></th>
+        <th scope="col"><%= Cost.human_attribute_name(:unit_price)%></th>
+        </tr>
+    </thead>
+    <tbody>
+    <% @transportation_modal.costs.distance.order(:minimum).each do |c|%>
+        <tr>
+        <td><%=c.minimum%>km</td>
+        <td><%=c.maximum%>km</td>
+        <td>R$<%=c.unit_price %></td>
+        </tr>
+        <% end %>
+    </tbody>
+    </table>
+<% end %>
+
 <% if current_user.admin? %>
     <div class="d-grid gap-2 d-md-block">
     <%= link_to 'Editar', edit_transportation_modal_path(@transportation_modal), class:"btn btn-primary btn-sm m-2"%>
     <%= button_to 'Desativar', inactived_transportation_modal_path(@transportation_modal.id), class:"btn btn-primary btn-sm m-2"%>
-    <%= link_to 'Configurar preço', new_cost_path, class:"btn btn-primary btn-sm m-2"%>
+    <%= link_to 'Configurar preço', new_transportation_modal_cost_path(@transportation_modal.id), class:"btn btn-primary btn-sm m-2"%>
     </div>
 <% end %>

@@ -14,7 +14,7 @@ class TransportationModalsController < ApplicationController
     end
 
     def create
-        @transportation_modal = TransportationModal.new(transportation_model_params)
+        @transportation_modal = TransportationModal.new(transportation_modal_params)
         if @transportation_modal.save
             redirect_to transportation_modals_path, notice: 'Modalidade de transporte cadastrada com sucesso.'
         else
@@ -32,7 +32,7 @@ class TransportationModalsController < ApplicationController
 
     private
 
-    def transportation_model_params
+    def transportation_modal_params
         params.require(:transportation_modal).permit(:name, :max_distance, :min_distance, :max_weight,
                                                      :min_weight, :flat_rate)
     end

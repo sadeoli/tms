@@ -16,6 +16,7 @@ describe 'Usuário vê configuração de preço' do
 
         # Assert
         expect(current_path).to eq costs_path
+        expect(page).not_to have_content 'Distância'
         expect(page).to have_content 'Peso'
         expect(page).to have_content '10kg'
         expect(page).to have_content '0kg'
@@ -37,6 +38,7 @@ describe 'Usuário vê configuração de preço' do
 
         # Assert
         expect(current_path).to eq costs_path
+        expect(page).not_to have_content 'Peso'
         expect(page).to have_content 'Distância'
         expect(page).to have_content '5km'
         expect(page).to have_content '40km'
