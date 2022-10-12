@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_11_213303) do
+ActiveRecord::Schema[7.0].define(version: 2022_10_12_184839) do
   create_table "calculations", force: :cascade do |t|
     t.integer "service_order_id", null: false
     t.integer "transportation_modal_id", null: false
@@ -33,7 +33,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_11_213303) do
 
   create_table "service_orders", force: :cascade do |t|
     t.string "code"
-    t.string "pickup_addres"
+    t.string "pickup_address"
     t.string "product_code"
     t.integer "weight"
     t.integer "width"
@@ -48,6 +48,21 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_11_213303) do
     t.integer "total_cost"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "vehicle_id"
+    t.date "delivery_date"
+    t.date "ship_date"
+    t.string "delay_reason"
+    t.index ["vehicle_id"], name: "index_service_orders_on_vehicle_id"
+  end
+
+  create_table "timescales", force: :cascade do |t|
+    t.integer "min_distance"
+    t.integer "max_distance"
+    t.integer "deadline"
+    t.integer "transportation_modal_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["transportation_modal_id"], name: "index_timescales_on_transportation_modal_id"
   end
 
   create_table "transportation_modals", force: :cascade do |t|
@@ -92,5 +107,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_11_213303) do
   add_foreign_key "calculations", "service_orders"
   add_foreign_key "calculations", "transportation_modals"
   add_foreign_key "costs", "transportation_modals"
+  add_foreign_key "service_orders", "vehicles"
+  add_foreign_key "timescales", "transportation_modals"
   add_foreign_key "vehicles", "transportation_modals"
 end

@@ -2,11 +2,12 @@ Rails.application.routes.draw do
   devise_for :users
   authenticate :user do
     root to: 'home#index'
-    resources :service_orders, only: [:index, :show, :new, :create] do
+    resources :service_orders, only: [:index, :show, :new, :create, :edit, :update] do
       resources :calculations, only: [:index, :show, :new, :create] do
         post 'started', on: :member
       end
       post 'calculated', on: :member
+      post 'closed', on: :member
     end
     resources :vehicles, only: [:index, :show, :new, :create]
     resources :costs, only: [:index]

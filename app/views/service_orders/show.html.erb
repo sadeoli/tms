@@ -3,8 +3,8 @@
 
 <div>
 <dl class="row">
-<dt class="col-sm-3"><%=ServiceOrder.human_attribute_name(:pickup_addres)%></dt>
-<dd class="col-sm-9"><%=@service_order.pickup_addres%></dd>
+<dt class="col-sm-3"><%=ServiceOrder.human_attribute_name(:pickup_address)%></dt>
+<dd class="col-sm-9"><%=@service_order.pickup_address%></dd>
 
 <dt class="col-sm-3"><%=ServiceOrder.human_attribute_name(:product_code)%></dt>
 <dd class="col-sm-9"><%=@service_order.product_code%></dd>
@@ -30,9 +30,13 @@
 <dt class="col-sm-3"><%=ServiceOrder.human_attribute_name(:status)%></dt>
 <dd class="col-sm-9"><%=I18n.t(@service_order.status).upcase%></dd>
 
-<% if !@service_order.total_cost.nil?%>
+<% if !@service_order.pending?%>
     <dt class="col-sm-3"><%=ServiceOrder.human_attribute_name(:total_cost)%></dt>
     <dd class="col-sm-9"><%=number_to_currency(@service_order.total_cost)%></dd>
+
+    <dt class="col-sm-3"><%=ServiceOrder.human_attribute_name(:delivery_time)%></dt>
+    <dd class="col-sm-9"><%=@service_order.delivery_time%> horas</dd>
+    
 <% end %>
 
 </dl>
@@ -44,7 +48,8 @@
     <thead>
         <tr>
         <th scope="col"><%= ServiceOrder.human_attribute_name(:transportation_modal_id)%></th>
-        <th scope="col"><%= ServiceOrder.human_attribute_name(:result)%></th>
+        <th scope="col"><%= ServiceOrder.human_attribute_name(:total_cost)%></th>
+        <th scope="col"><%= ServiceOrder.human_attribute_name(:delivery_time)%></th>
         <th scope="col"></th>
         </tr>
     </thead>
@@ -52,10 +57,32 @@
     <% @calculations.each do |calculation|%>
         <tr>
         <th scope="row"><%=calculation.transportation_modal.name%></th>
-        <td><%=number_to_currency(calculation.result)%></td>
+        <td><%=number_to_currency(calculation.result[:cost])%></td>
+        <td><%=calculation.result[:time]%>h</td>
         <td><%=button_to "Escolher", started_service_order_calculation_path(@service_order.id,calculation.id)  %></td>
         </tr>
     <% end %>
     </tbody>
     </table>
+<% end %>
+
+<% if @service_order.intransit? %>
+<%= button_to 'Encerrar', closed_service_order_path(@service_order.id), class:"btn btn-primary btn-sm m-2"%>
+<% end %>
+
+<% if @service_order.delayed? %>
+    <% if @service_order.delay_reason.nil? %>
+        <%= form_with model: @service_order do |f|%>
+        <div class="row mb-3">
+            <%= f.label :delay_reason,  {class: "col-sm-2 col-form-label"}%>
+            <div class="col-sm-10">
+                <%= f.text_field :delay_reason, {class: "form-control"}%>
+            </div>
+        </div>
+        <%= f.submit 'Salvar', {class:"btn btn-primary"} %>
+        <% end %>
+    <% else %>
+        <dt class="col-sm-3"><%=ServiceOrder.human_attribute_name(:delay_reason)%></dt>
+        <dd class="col-sm-9"><%=@service_order.delay_reason%></dd>
+    <% end %>
 <% end %>

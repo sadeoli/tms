@@ -1,7 +1,7 @@
 pt-BR:
   pending: 'Pendente'
   intransit: 'Em entrega'
-  ontime: 'Entrege no prazo'
+  ontime: 'Entregue no prazo'
   delayed: 'Entregue com atraso'
   transportation_modal: 'Modalidade de Transporte'
   transportation_modal_id: 'Modalidade de Transporte'
@@ -30,3 +30,4 @@ pt-BR:
         transportation_modal: 'Modalidade de Transporte'
         transportation_modal_id: 'Modalidade de Transporte'
         result: 'Preço'
+        delay_reason: 'Motivo de Atraso'

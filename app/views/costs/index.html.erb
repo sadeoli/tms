@@ -1,4 +1,4 @@
-<p class="h2 mt-4">Preços Unitários</p>
+<p class="h2 mt-4">Configuração de Preços</p>
 
 <% if @costs.weight.any? %>
 <p class="display-6 mt-4"> Peso</p>
@@ -17,7 +17,7 @@
         <th scope="row"><%=c.transportation_modal.name%></th>
         <td><%=c.minimum%>kg</td>
         <td><%=c.maximum%>kg</td>
-        <td>R$<%=c.unit_price %></td>
+        <td><%=number_to_currency(c.unit_price) %></td>
         </tr>
         <% end %>
     </tbody>
@@ -29,7 +29,7 @@
     <table class="table m-4">
     <thead>
         <tr>
-        <th scope="col"><%= Cost.human_attribute_name(:transportation_modal.name)%></th>
+        <th scope="col"><%= Cost.human_attribute_name(:transportation_modal)%></th>
         <th scope="col"><%= Cost.human_attribute_name(:minimum)%></th>
         <th scope="col"><%= Cost.human_attribute_name(:maximum)%></th>
         <th scope="col"><%= Cost.human_attribute_name(:unit_price)%></th>
@@ -38,10 +38,35 @@
     <tbody>
     <% @costs.distance.order(:minimum).each do |c|%>
         <tr>
-        <th scope="row"><%=c.transportation_modal%></th>
+        <th scope="row"><%=c.transportation_modal.name%></th>
         <td><%=c.minimum%>km</td>
         <td><%=c.maximum%>km</td>
-        <td>R$<%=c.unit_price %></td>
+        <td><%=number_to_currency(c.unit_price) %></td>
+        </tr>
+        <% end %>
+    </tbody>
+    </table>
+<% end %>
+
+<% if @timescales.any? %>
+<p class="h2 mt-4">Configuração de Prazos</p>
+    <p class="display-6 mt-4"> Tempo de Entrega</p>
+    <table class="table m-4">
+    <thead>
+        <tr>
+        <th scope="col"><%= Timescale.human_attribute_name(:transportation_modal)%></th>
+        <th scope="col"><%= Timescale.human_attribute_name(:minimum)%></th>
+        <th scope="col"><%= Timescale.human_attribute_name(:maximum)%></th>
+        <th scope="col"><%= Timescale.human_attribute_name(:deadline)%></th>
+        </tr>
+    </thead>
+    <tbody>
+    <% @timescales.order(:minimum).each do |time|%>
+        <tr>
+        <th scope="row"><%=time.transportation_modal.name%></th>
+        <td><%=time.minimum%>km</td>
+        <td><%=time.maximum%>km</td>
+        <td><%=time.deadline%>h</td>
         </tr>
         <% end %>
     </tbody>

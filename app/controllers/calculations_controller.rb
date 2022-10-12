@@ -7,7 +7,7 @@ class CalculationsController < ApplicationController
         if @vehicles.any?
             @service_order.intransit!
             @vehicles.first.working!
-            @service_order.update(total_cost:@calculation.result)
+            @service_order.update(total_cost:@calculation.result[:cost], delivery_time:@calculation.result[:time], vehicle: @vehicles.first, ship_date: Date.today )
             redirect_to @service_order, notice: 'Ordem de serviço iniciada.'
         end
     end

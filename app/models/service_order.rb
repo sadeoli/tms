@@ -1,5 +1,6 @@
 class ServiceOrder < ApplicationRecord
     enum status: { pending: 0, intransit: 3, ontime: 7, delayed: 9}
+    belongs_to :vehicle, optional: true
 
     before_validation :generate_code, on: :create 
 
@@ -13,6 +14,15 @@ class ServiceOrder < ApplicationRecord
             if !Calculation.new(service_order: self, transportation_modal: transportation_modal).result.nil?
                 Calculation.create!(service_order: self, transportation_modal: transportation_modal)
             end
+        end
+    end
+
+    def close
+        delivery_date = Date.today
+        if delivery_time > 24 * (delivery_date - ship_date).to_i
+            self.ontime!
+        else
+            self.delayed!
         end
     end
     

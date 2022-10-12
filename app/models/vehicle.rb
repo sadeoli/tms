@@ -1,5 +1,6 @@
 class Vehicle < ApplicationRecord
   belongs_to :transportation_modal
+  has_many :service_orders
 
   enum status: { active: 0, working: 3, maintenance:5}
 

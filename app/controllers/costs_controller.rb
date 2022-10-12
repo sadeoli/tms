@@ -6,6 +6,7 @@ class CostsController < ApplicationController
 
     def index
         @costs = Cost.all
+        @timescales = Timescale.all
     end
 
     def new

@@ -1,5 +1,5 @@
 class ServiceOrdersController < ApplicationController
-    before_action :set_service_order, only: [:show, :calculated]
+    before_action :set_service_order, only: [:show, :calculated, :closed, :update, :edit]
     before_action only: [:new, :create, :edit, :update] do
         redirect_to root_path unless current_user && current_user.admin?
     end
@@ -22,17 +22,29 @@ class ServiceOrdersController < ApplicationController
         end
     end
 
+    def update
+        @service_order.update(service_order_params)
+        redirect_to @service_order, notice: 'Ordem de serviço atualizada com sucesso.'
+    end
+
+    def edit
+    end
+
     def calculated
-        @costs = Cost.all
-        @transportation_modals = TransportationModal.all
         @service_order.calculate
+        redirect_to @service_order
+    end
+
+    def closed
+        @service_order.close
+        @service_order.vehicle.active!
         redirect_to @service_order
     end
 
     def show
         @calculations = Calculation.where(service_order:@service_order)
         if @calculations.empty?
-            flash.now[:alert]= "Não há modalidade de transporte ou configuração de preço que atenda essa ordem de serviço."
+            flash.now[:alert]= "Não há modalidade de transporte e/ou configuração de tarifas que atendam essa ordem de serviço."
         end
     end
 
@@ -43,7 +55,7 @@ class ServiceOrdersController < ApplicationController
     end
 
     def service_order_params
-        params.require(:service_order).permit(:pickup_addres, :product_code, :weight, :width, :height,
-            :depth , :recipient_name ,:recipient_address , :recipient_phone , :distance)
+        params.require(:service_order).permit(:pickup_address, :product_code, :weight, :width, :height,
+            :depth , :recipient_name ,:recipient_address , :recipient_phone , :distance, :delay_reason)
     end
 end
