@@ -3,6 +3,9 @@ pt-BR:
   intransit: 'Em entrega'
   ontime: 'Entrege no prazo'
   delayed: 'Entregue com atraso'
+  transportation_modal: 'Modalidade de Transporte'
+  transportation_modal_id: 'Modalidade de Transporte'
+  result: 'Preço'
   activerecord:
     models:
       service_order: 
@@ -23,4 +26,7 @@ pt-BR:
         distance: 'Distância'
         delivery_time: 'Prazo de Entrega'
         status: 'Status'
-        total_cost: 'Total'
+        total_cost: 'Preço'
+        transportation_modal: 'Modalidade de Transporte'
+        transportation_modal_id: 'Modalidade de Transporte'
+        result: 'Preço'

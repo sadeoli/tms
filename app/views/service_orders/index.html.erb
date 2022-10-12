@@ -14,7 +14,7 @@
     <tbody>
     <% @service_orders.each do |so|%>
         <tr>
-        <th scope="row"><%=so.code%></th>
+        <th scope="row"><%=button_to so.code, calculated_service_order_path(so.id)%></th>
         <td><%=so.weight%>kg</td>
         <td><%=so.distance%>km</td>
         <td><%= so.width %>x<%= so.depth %>x<%= so.height %>cm</td>
