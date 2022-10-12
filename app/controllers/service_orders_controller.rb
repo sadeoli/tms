@@ -48,6 +48,11 @@ class ServiceOrdersController < ApplicationController
         end
     end
 
+    def search
+        @code = params[:query]
+        @service_order = ServiceOrder.find_by(code:@code)
+    end
+
     private
 
     def set_service_order

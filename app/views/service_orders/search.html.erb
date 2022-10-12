@@ -1,0 +1,23 @@
+<h2>Resultado da Busca por:</h2>
+
+<p class="display-6 mt-4"><%= @code%></p>
+
+<div>
+<dl class="row">
+<dt class="col-sm-3"><%=ServiceOrder.human_attribute_name(:pickup_address)%></dt>
+<dd class="col-sm-9"><%=@service_order.pickup_address%></dd>
+
+<dt class="col-sm-3"><%=ServiceOrder.human_attribute_name(:recipient_address)%></dt>
+<dd class="col-sm-9"><%=@service_order.recipient_address%></dd>
+
+<dt class="col-sm-3"><%=ServiceOrder.human_attribute_name(:vehicle)%></dt>
+<dd class="col-sm-9"><%=@service_order.vehicle.transportation_modal.name%> <%=@service_order.vehicle.license_plate%></dd>
+
+<dt class="col-sm-3"><%=ServiceOrder.human_attribute_name(:status)%></dt>
+<dd class="col-sm-9"><%=I18n.t(@service_order.status).upcase%></dd>
+
+<dt class="col-sm-3"><%=ServiceOrder.human_attribute_name(:delivery_time)%></dt>
+<dd class="col-sm-9"><%=@service_order.delivery_time%> horas</dd>
+
+</dl>
+</div>

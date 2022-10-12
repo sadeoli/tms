@@ -1,7 +1,12 @@
 Rails.application.routes.draw do
   devise_for :users
+  root to: 'home#index'
+  
+  resources :service_orders do
+    get 'search', on: :collection
+  end
+
   authenticate :user do
-    root to: 'home#index'
     resources :service_orders, only: [:index, :show, :new, :create, :edit, :update] do
       resources :calculations, only: [:index, :show, :new, :create] do
         post 'started', on: :member
