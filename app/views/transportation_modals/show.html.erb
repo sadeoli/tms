@@ -3,7 +3,7 @@
 <%= render @transportation_modal%>
 
 
-<p class="h2 mt-4">Preços Unitários</p>
+<p class="h3 mt-4">Configuração de Preços</p>
 
 <% if @transportation_modal.costs.weight.any? %>
 <p class="display-6 mt-4"> Peso</p>
@@ -12,7 +12,7 @@
         <tr>
         <th scope="col"><%= Cost.human_attribute_name(:minimum)%></th>
         <th scope="col"><%= Cost.human_attribute_name(:maximum)%></th>
-        <th scope="col"><%= Cost.human_attribute_name(:unit_price)%></th>
+        <th scope="col">R$/km</th>
         </tr>
     </thead>
     <tbody>
@@ -20,7 +20,7 @@
         <tr>
         <td><%=c.minimum%>kg</td>
         <td><%=c.maximum%>kg</td>
-        <td>R$<%=c.unit_price %></td>
+        <td><%= number_to_currency(c.unit_price) %></td>
         </tr>
         <% end %>
     </tbody>
@@ -34,7 +34,7 @@
         <tr>
         <th scope="col"><%= Cost.human_attribute_name(:minimum)%></th>
         <th scope="col"><%= Cost.human_attribute_name(:maximum)%></th>
-        <th scope="col"><%= Cost.human_attribute_name(:unit_price)%></th>
+        <th scope="col">Taxa</th>
         </tr>
     </thead>
     <tbody>
@@ -42,7 +42,31 @@
         <tr>
         <td><%=c.minimum%>km</td>
         <td><%=c.maximum%>km</td>
-        <td>R$<%=c.unit_price %></td>
+        <td><%=number_to_currency(c.unit_price) %></td>
+        </tr>
+        <% end %>
+    </tbody>
+    </table>
+<% end %>
+
+
+<% if @transportation_modal.timescales.any? %>
+<p class="h2 mt-4">Configuração de Prazos</p>
+    <p class="display-6 mt-4"> Tempo de Entrega</p>
+    <table class="table m-4">
+    <thead>
+        <tr>
+        <th scope="col"><%= Timescale.human_attribute_name(:minimum)%></th>
+        <th scope="col"><%= Timescale.human_attribute_name(:maximum)%></th>
+        <th scope="col"><%= Timescale.human_attribute_name(:deadline)%></th>
+        </tr>
+    </thead>
+    <tbody>
+    <% @transportation_modal.timescales.order(:min_distance).each do |time|%>
+        <tr>
+        <td><%=time.min_distance%>km</td>
+        <td><%=time.max_distance%>km</td>
+        <td><%=time.deadline%>h</td>
         </tr>
         <% end %>
     </tbody>
@@ -50,9 +74,8 @@
 <% end %>
 
 <% if current_user.admin? %>
-    <div class="d-grid gap-2 d-md-block">
-    <%= link_to 'Editar', edit_transportation_modal_path(@transportation_modal), class:"btn btn-primary btn-sm m-2"%>
-    <%= button_to 'Desativar', inactived_transportation_modal_path(@transportation_modal.id), class:"btn btn-primary btn-sm m-2"%>
-    <%= link_to 'Configurar preço', new_transportation_modal_cost_path(@transportation_modal.id), class:"btn btn-primary btn-sm m-2"%>
-    </div>
+    <%= link_to 'Editar', edit_transportation_modal_path(@transportation_modal), class:"btn btn-outline-dark btn-sm m-2"%>
+    <%= link_to 'Configurar preço', new_transportation_modal_cost_path(@transportation_modal.id), class:"btn btn-outline-dark btn-sm m-2"%>
+    <%= link_to 'Configurar prazo', new_transportation_modal_timescale_path(@transportation_modal.id), class:"btn btn-outline-dark btn-sm m-2"%>
+    <%= button_to 'Desativar', inactived_transportation_modal_path(@transportation_modal.id), class:"btn btn btn-danger m-2"%>
 <% end %>

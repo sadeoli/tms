@@ -36,7 +36,5 @@ describe 'Usuario se autentica' do
         expect(page).to have_link '[Entrar]'
         expect(page).not_to have_button 'Sair'
         expect(page).not_to have_content 'Usuário - usuario@sistemadefrete.com.br'
-        
-        
     end
 end

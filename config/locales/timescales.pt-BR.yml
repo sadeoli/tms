@@ -1,0 +1,13 @@
+pt-BR:
+  activerecord:
+    models:
+      timescales: 
+        one: 'Prazo'
+        other: 'Prazos'
+    attributes:
+      timescale:
+        max_distance: "Distância Máxima"
+        min_distance: 'Distância Minima'
+        deadline: "Prazo"
+        transportation_modal: "Modalidade de Transporte"
+        transportation_modal_id: "Modalidade de Transporte"

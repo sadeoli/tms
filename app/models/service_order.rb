@@ -9,7 +9,7 @@ class ServiceOrder < ApplicationRecord
     end
 
     def calculate
-        @transportation_modals = TransportationModal.all
+        @transportation_modals = TransportationModal.active
         @transportation_modals.each do |transportation_modal|
             if !Calculation.new(service_order: self, transportation_modal: transportation_modal).result.nil?
                 Calculation.create!(service_order: self, transportation_modal: transportation_modal)

@@ -19,6 +19,7 @@ Rails.application.routes.draw do
     resources :transportation_modals, only: [:index, :show, :new, :create, :edit, :update] do
       post 'inactived', on: :member
       resources :costs, only: [:show, :new, :create]
+      resources :timescales, only: [:new, :create]
     end
   end
 

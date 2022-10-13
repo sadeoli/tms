@@ -23,7 +23,7 @@ describe 'Usuário cadastra uma configuração de preço' do
         expect(page).to have_content 'Peso'
         expect(page).to have_content '10kg'
         expect(page).to have_content '0kg'
-        expect(page).to have_content 'R$50' 
+        expect(page).to have_content 'R$ 50,00' 
     end
 
     it 'por distancia' do
@@ -48,7 +48,7 @@ describe 'Usuário cadastra uma configuração de preço' do
         expect(page).to have_content 'Distância'
         expect(page).to have_content '40km'
         expect(page).to have_content '5km'
-        expect(page).to have_content 'R$30' 
+        expect(page).to have_content 'R$ 30,00' 
         
     end
 end

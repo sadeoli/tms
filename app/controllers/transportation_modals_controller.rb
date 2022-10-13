@@ -13,6 +13,18 @@ class TransportationModalsController < ApplicationController
         @transportation_modal = TransportationModal.new 
     end
 
+    def edit
+    end
+
+    def update
+        if @transportation_modal.update(transportation_modal_params)
+            redirect_to @transportation_modal, notice: 'Modalidade de transporte atualizada com sucesso.'
+        else
+            flash.now[:alert] = 'Não foi possível atualizar a modalidade de transporte.'
+            render 'edit'
+        end
+    end
+
     def create
         @transportation_modal = TransportationModal.new(transportation_modal_params)
         if @transportation_modal.save
