@@ -2,7 +2,7 @@
 
 <h1 class="display-6 mt-4"><%= @transportation_modal.name%></h1>
 
-<%= form_with(model: [@transportation_modal, @timescale]) do |f|%>
+<%= form_with(model:[@transportation_modal, @timescale]) do |f|%>
   <div class="row mt-4 mb-4">
     <div class="col">
           <%= f.label :min_distance %>
@@ -27,6 +27,6 @@
     </div>
   </div>
   <div>
-  <%= f.submit 'Cadastrar', {class:"btn btn-primary"} %>
+  <%= f.submit 'Cadastrar', {class:"btn btn-secondary m-2"} %>
   </div>
 <% end %>

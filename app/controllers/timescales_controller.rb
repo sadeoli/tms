@@ -9,7 +9,7 @@ class TimescalesController < ApplicationController
     end
 
     def create
-        @timescale  = @transportation_modal.Timescales.new(timescale_params)
+        @timescale  = Timescales.transportation_modal.new(timescale_params)
         if @timescale.save
             redirect_to @transportation_modal, notice: 'Prazo cadastrado com sucesso.'
         else

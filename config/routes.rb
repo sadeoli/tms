@@ -14,7 +14,7 @@ Rails.application.routes.draw do
       post 'calculated', on: :member
       post 'closed', on: :member
     end
-    resources :vehicles, only: [:index, :show, :new, :create]
+    resources :vehicles, only: [:index, :new, :create, :edit, :update]
     resources :costs, only: [:index]
     resources :transportation_modals, only: [:index, :show, :new, :create, :edit, :update] do
       post 'inactived', on: :member

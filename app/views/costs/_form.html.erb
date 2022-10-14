@@ -1,6 +1,6 @@
 <h1 class="display-6"><%= @transportation_modal.name%></h1>
 
-<%= form_with(model: [@transportation_modal, @cost]) do |f|%>
+<%= form_with(model:[@transportation_modal, @cost]) do |f|%>
   <div class= "mt-4">
       <strong> <%= f.label :category %> </strong>
       <%= f.select :category, options_for_select(Cost.categories.keys.map {|k| [I18n.t(k), k]})%>
@@ -23,6 +23,6 @@
     </div>
   </div>
   <div>
-  <%= f.submit 'Cadastrar', {class:"btn btn-primary"} %>
+  <%= f.submit 'Cadastrar', {class:"btn btn-secondary m-2"} %>
   </div>
 <% end %>

@@ -89,7 +89,7 @@ RSpec.describe TransportationModal, type: :model do
         end
 
         context 'uniqueness' do
-            it 'false when name is lready in use' do 
+            it 'false when name is already in use' do 
                 # Arrange
                 transportation_modal1 = TransportationModal.create!(name: 'Bicicleta', max_distance: 10 , min_distance: 1,
                     max_weight: 8, min_weight: 0, flat_rate: 5, status: :active)
@@ -98,6 +98,70 @@ RSpec.describe TransportationModal, type: :model do
     
                 # Act
                 result = transportation_modal2.valid?
+    
+                # Assert
+                expect(result).to eq false
+            end
+        end
+
+        context 'numericality' do
+            it 'false when min_distance is negative' do
+                # Arrange
+                transportation_modal = TransportationModal.new(name: 'Bicicleta', max_distance: 10 , min_distance: -1,
+                    max_weight: 8, min_weight: 0, flat_rate: 5, status: :active)
+    
+                # Act
+                result = transportation_modal.valid?
+    
+                # Assert
+                expect(result).to eq false
+            end
+
+            it 'false when min_weight is negative' do
+                # Arrange
+                transportation_modal = TransportationModal.new(name: 'Bicicleta', max_distance: 10 , min_distance: 1,
+                    max_weight: 8, min_weight: -5, flat_rate: 5, status: :active)
+    
+                # Act
+                result = transportation_modal.valid?
+    
+                # Assert
+                expect(result).to eq false
+            end
+
+            it 'false when flat_rate is negative' do
+                # Arrange
+                transportation_modal = TransportationModal.new(name: 'Bicicleta', max_distance: 10 , min_distance: 1,
+                    max_weight: 8, min_weight: 5, flat_rate: -5, status: :active)
+    
+                # Act
+                result = transportation_modal.valid?
+    
+                # Assert
+                expect(result).to eq false
+            end
+        end
+
+        context 'comparison' do
+            it 'false when max_distance is lower than min_distance' do
+                # Arrange
+                transportation_modal = TransportationModal.new(name: 'Bicicleta', max_distance: 10 , min_distance: 11,
+                    max_weight: 8, min_weight: 0, flat_rate: 5, status: :active)
+    
+                # Act
+                result = transportation_modal.valid?
+    
+                # Assert
+                expect(result).to eq false
+            end
+
+            it 'false when max_weight is lower than min_weight' do
+                # Arrange
+                transportation_modal = TransportationModal.new(name: 'Bicicleta', max_distance: 10 , min_distance: 1,
+                    max_weight: 8, min_weight: 15, flat_rate: 5, status: :active)
+    
+                # Act
+                result = transportation_modal.valid?
     
                 # Assert
                 expect(result).to eq false

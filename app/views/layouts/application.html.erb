@@ -42,7 +42,7 @@
 
     <nav class="navbar navbar-expand-lg bg-light">
       <div class="container-fluid">
-      <a class="navbar-brand" href="#">Menu</a>
+      <a class="navbar-brand" href="/">Menu</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -63,7 +63,7 @@
         </ul>
         <section id="search">
           <form class="d-flex">
-          <%= form_with(url:search_service_orders_path, method: :get) do |f|  %>
+          <%= form_with(url:search_service_orders_path, method: :get, authenticity_token: false) do |f|  %>
             <%= f.text_field :query, {class:"form-control me-2" , placeholder:"Código de Rastreamento"} %>
             <%= f.submit 'Consultar', {class:"btn btn-dark"} %>
           <% end %>

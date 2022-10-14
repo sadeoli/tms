@@ -11,6 +11,9 @@
         <th scope="col"><%= Vehicle.human_attribute_name(:manufacture_year)%></th>
         <th scope="col"><%= Vehicle.human_attribute_name(:transportation_modal)%></th>
         <th scope="col"><%= Vehicle.human_attribute_name(:status)%></th>
+        <%if current_user.admin?%>
+            <th scope="col"></th>
+        <% end %>
         </tr>
     </thead>
     <tbody>
@@ -23,6 +26,9 @@
         <td><%=vehicle.manufacture_year%></td>
         <td><%=vehicle.transportation_modal.name%></td>
         <td><%=I18n.t(vehicle.status).upcase%></td>
+        <%if current_user.admin?%>
+            <td><a class="link-secondary" href="/vehicles/<%=vehicle.id%>/edit">Editar</a></td>
+        <% end %>
         </tr>
         <% end %>
     </tbody>
@@ -30,6 +36,6 @@
 <% end %>
 
 <% if current_user.admin? %>
-    <%= link_to 'Cadastrar', new_vehicle_path, class:"btn btn-primary"%>
+    <%= link_to 'Cadastrar', new_vehicle_path, class:"btn btn-secondary m-2"%>
 <% end %>
 

@@ -50,6 +50,7 @@
         <th scope="col"><%= ServiceOrder.human_attribute_name(:transportation_modal_id)%></th>
         <th scope="col"><%= ServiceOrder.human_attribute_name(:total_cost)%></th>
         <th scope="col"><%= ServiceOrder.human_attribute_name(:delivery_time)%></th>
+        <th scope="col">Disponibilidade</th>
         <th scope="col"></th>
         </tr>
     </thead>
@@ -59,6 +60,7 @@
         <th scope="row"><%=calculation.transportation_modal.name%></th>
         <td><%=number_to_currency(calculation.result[:cost])%></td>
         <td><%=calculation.result[:time]%>h</td>
+        <td><%=calculation.transportation_modal.vehicles.active.count%> veículos</td>
         <td><%=button_to "Escolher", started_service_order_calculation_path(@service_order.id,calculation.id)  %></td>
         </tr>
     <% end %>

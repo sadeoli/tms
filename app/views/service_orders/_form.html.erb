@@ -1,5 +1,5 @@
-<form>
-<%= form_with model: @service_order do |f|%>
+
+<%= form_with(model:@service_order) do |f|%>
   <div class="row mb-3">
     <%= f.label :product_code, {class: "col-sm-2 col-form-label"}%>
     <div class="col-sm-10">
@@ -75,8 +75,5 @@
         </div>
     </div>
   </div>
-    
-
-  <button type="submit" class="btn btn-primary">Cadastrar</button>
-</form>
-<% end %>
+  <%= f.submit 'Cadastrar', {class:"btn btn-secondary m-2"} %>
+  <% end %>

@@ -1,5 +1,14 @@
 <h2>Cadastro de Modalidade de Transporte</h2>
 <br>
+
+<% if @transportation_modal.errors.any? %>
+    <p> Verifique os erros abaixo: </p>
+    <ul>
+    <% @transportation_modal.errors.full_messages.each do |msg| %>
+        <li><%= msg %> </li>
+    <% end %>
+    </ul>
+<%end%>
 <div>
 <%= render 'form' %>
 </div>
