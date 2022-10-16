@@ -55,8 +55,8 @@
     <thead>
         <tr>
         <th scope="col"><%= Timescale.human_attribute_name(:transportation_modal)%></th>
-        <th scope="col"><%= Timescale.human_attribute_name(:minimum)%></th>
-        <th scope="col"><%= Timescale.human_attribute_name(:maximum)%></th>
+        <th scope="col"><%= Timescale.human_attribute_name(:min_distance)%></th>
+        <th scope="col"><%= Timescale.human_attribute_name(:max_distance)%></th>
         <th scope="col"><%= Timescale.human_attribute_name(:deadline)%></th>
         </tr>
     </thead>
@@ -64,8 +64,8 @@
     <% @timescales.order(:minimum).each do |time|%>
         <tr>
         <th scope="row"><%=time.transportation_modal.name%></th>
-        <td><%=time.minimum%>km</td>
-        <td><%=time.maximum%>km</td>
+        <td><%=time.min_distance%>km</td>
+        <td><%=time.max_distance%>km</td>
         <td><%=time.deadline%>h</td>
         </tr>
         <% end %>

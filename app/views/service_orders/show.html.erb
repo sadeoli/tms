@@ -61,7 +61,9 @@
         <td><%=number_to_currency(calculation.result[:cost])%></td>
         <td><%=calculation.result[:time]%>h</td>
         <td><%=calculation.transportation_modal.vehicles.active.count%> veículos</td>
-        <td><%=button_to "Escolher", started_service_order_calculation_path(@service_order.id,calculation.id)  %></td>
+        <% if calculation.transportation_modal.vehicles.active.count>0 %>
+            <td><%=button_to "Escolher", started_service_order_calculation_path(@service_order.id,calculation.id)  %></td>
+        <% end %>
         </tr>
     <% end %>
     </tbody>

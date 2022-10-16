@@ -7,7 +7,7 @@ pt-BR:
     attributes:
       timescale:
         max_distance: "Distância Máxima"
-        min_distance: 'Distância Minima'
+        min_distance: 'Distância Mínima'
         deadline: "Prazo"
         transportation_modal: "Modalidade de Transporte"
         transportation_modal_id: "Modalidade de Transporte"

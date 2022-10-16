@@ -1,10 +1,13 @@
 <h1 class="display-6"><%= @transportation_modal.name%></h1>
+<h3><%= I18n.t(@cost.category) if !@cost.category.nil?%></h3>
 
 <%= form_with(model:[@transportation_modal, @cost]) do |f|%>
-  <div class= "mt-4">
-      <strong> <%= f.label :category %> </strong>
-      <%= f.select :category, options_for_select(Cost.categories.keys.map {|k| [I18n.t(k), k]})%>
-  </div>
+  <% if @cost.category.nil?%>
+    <div class= "mt-4">
+        <strong> <%= f.label :category %> </strong>
+        <%= f.select :category, options_for_select(Cost.categories.keys.map {|k| [I18n.t(k), k]})%>
+    </div>
+  <% end %>
   <div class="row mt-4 mb-4">
     <div class="col">
           <%= f.label :minimum %>
