@@ -1,0 +1,32 @@
+<h2>Resultado da busca por:</h2>
+<h1 class="display-6 mb-4"><%= @code%></h1>
+
+<% @vehicles.each do |vehicle|%>
+<div>
+<dl class="row">
+<dt class="col-sm-3"><%= Vehicle.human_attribute_name(:license_plate)%></dt>
+<dd class="col-sm-9"><%=vehicle.license_plate%></dt>
+
+<dt class="col-sm-3"><%= Vehicle.human_attribute_name(:model)%></dt>
+<dd class="col-sm-9"><%=vehicle.model%></dd>
+
+<dt class="col-sm-3"><%= Vehicle.human_attribute_name(:brand)%></dt>
+<dd class="col-sm-9"><%=vehicle.brand%></dd>
+
+<dt class="col-sm-3"><%= Vehicle.human_attribute_name(:max_weight)%></dt>
+<dd class="col-sm-9"><%=vehicle.max_weight%>kg</dd>
+
+<dt class="col-sm-3"><%= Vehicle.human_attribute_name(:manufacture_year)%></dt>
+<dd class="col-sm-9"><%=vehicle.manufacture_year%></dd>
+
+<dt class="col-sm-3"><%= Vehicle.human_attribute_name(:transportation_modal)%></dt>
+<dd class="col-sm-9"><%=vehicle.transportation_modal.name%></dd>
+
+<dt class="col-sm-3"><%=Vehicle.human_attribute_name(:status)%></dt>
+<dd class="col-sm-9"><%=I18n.t(vehicle.status).upcase%></dd>
+</dl>
+</div>
+<% if current_user.admin? %>
+    <%= link_to 'Editar', edit_vehicle_path(vehicle), class:"btn btn-outline-dark btn-sm m-2"%>
+<% end %>
+<% end %>

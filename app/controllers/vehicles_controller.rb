@@ -3,7 +3,7 @@ class VehiclesController < ApplicationController
         redirect_to root_path unless current_user && current_user.admin?
     end
 
-    before_action :set_vehicle, only: [:edit, :update]
+    before_action :set_vehicle, only: [:edit, :update, :show]
 
     def index
         @vehicles = Vehicle.all
@@ -25,6 +25,7 @@ class VehiclesController < ApplicationController
         end
     end
 
+
     def edit
         @transportation_modals = TransportationModal.all
     end
@@ -36,6 +37,14 @@ class VehiclesController < ApplicationController
             @transportation_modals = TransportationModal.all
             flash.now[:alert] = 'Não foi possível atualizar o veículo.'
             render 'edit'
+        end
+    end
+
+    def search
+        @code = params[:query]
+        @vehicles = Vehicle.where("license_plate LIKE ?", "%#{@code}%")
+        if @vehicles.empty?
+            redirect_to vehicles_path, alert: 'Não foi possível encontrar o veículo.'
         end
     end
 

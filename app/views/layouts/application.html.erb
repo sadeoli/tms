@@ -47,6 +47,7 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <% if user_signed_in? %>
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
             <%= link_to 'Ordens de Serviço', service_orders_path, class:"nav-link" %>
@@ -61,9 +62,10 @@
             <%= link_to 'Tarifas', costs_path, class:"nav-link" %>
           </li>
         </ul>
+      <% end %>
         <section id="search">
-          <form class="d-flex">
-          <%= form_with(url:search_service_orders_path, method: :get, authenticity_token: false) do |f|  %>
+          <form action="/service_orders/search" method="get" class="d-flex">
+          <%= form_with(url:search_service_orders_path, method: :get) do |f|  %>
             <%= f.text_field :query, {class:"form-control me-2" , placeholder:"Código de Rastreamento"} %>
             <%= f.submit 'Consultar', {class:"btn btn-dark"} %>
           <% end %>

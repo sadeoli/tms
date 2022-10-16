@@ -18,12 +18,23 @@ describe 'Usuário busca por um pedido' do
         click_on 'Consultar'
 
         # Assert
-        expect(current_path).to eq search_service_orders_path
         expect(page).to have_content service_order.code
         expect(page).to have_content 'Rua das Amoras, 52 - Campinas/SP'
         expect(page).to have_content 'Rua das Laranjeiras, 15 - Campinas/SP'
         expect(page).to have_content '24 horas'
         expect(page).to have_content 'Bicicleta'
+    end
+
+    it 'e não encontra um pedido' do
+        # Arrange
+
+        # Act
+        visit root_path
+        fill_in 'Código de Rastreamento', with: 'HDYS558'
+        click_on 'Consultar'
+
+        # Assert
+        expect(page).to have_content 'Não foi possível encontrar o pedido.'
 
     end
 end

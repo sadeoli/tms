@@ -1,4 +1,16 @@
 <h2>Veículos</h2>
+<div class='mb-2 d-flex justify-content-end'>
+<form action="/vehicles/search" method="get" class="row g-3">
+<%= form_with(url: search_vehicles_path, method: :get) do |f|  %>
+    <div class="col-auto">
+    <%= f.text_field :query, {class:"form-control me-2", placeholder:"Placa"} %>
+    </div>
+    <div class="col-auto">
+    <%= f.submit 'Buscar', {class:"btn btn-dark"} %>
+    </div>
+<% end %>
+</form>
+</div>
 
 <% if @vehicles.any? %>
     <table class="table">

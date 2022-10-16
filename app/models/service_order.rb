@@ -18,8 +18,8 @@ class ServiceOrder < ApplicationRecord
     end
 
     def close
-        delivery_date = Date.today
-        if delivery_time > 24 * (delivery_date - ship_date).to_i
+        self.delivery_date = Date.today
+        if self.delivery_time > 24 * (self.delivery_date - self.ship_date).to_i
             self.ontime!
         else
             self.delayed!

@@ -51,6 +51,13 @@ class ServiceOrdersController < ApplicationController
     def search
         @code = params[:query]
         @service_order = ServiceOrder.find_by(code:@code)
+        if @service_order.nil?
+            if user_signed_in?
+                redirect_to service_orders_path, alert: 'Não foi possível encontrar o pedido.'
+            else
+                redirect_to root_path, alert: 'Não foi possível encontrar o pedido.'
+            end
+        end
     end
 
     private
