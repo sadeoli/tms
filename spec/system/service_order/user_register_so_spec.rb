@@ -29,4 +29,29 @@ describe 'Usuario registra uma ordem de serviço' do
         expect(page).to have_content '20x40x50cm'
         expect(page).to have_content '7km'
     end
+
+    it 'e mantém os campos obrigatórios' do
+        # Arrange
+        user = User.create!(email: 'usuario@sistemadefrete.com.br', password: 'password', access_group: :admin)
+
+        # Act
+        login_as user 
+        visit root_path
+        click_on 'Ordens de Serviço'
+        click_on 'Cadastrar'
+        fill_in 'Peso', with: ''
+        fill_in 'Altura', with: ''
+        fill_in 'Profundidade', with: ''
+        fill_in 'Largura', with: ''
+        fill_in 'Endereço de Retirada', with: ''
+        fill_in 'Código do Produto', with: ''
+        fill_in 'Nome do Destinatário', with: ''
+        fill_in 'Endereço do Destinatário', with: ''
+        fill_in 'Telefone do Destinatário', with: ''
+        fill_in 'Distância', with: ''
+        click_on 'Cadastrar'
+
+        # Assert
+        expect(page).to have_content 'Ordem de serviço não cadastrado.'        
+    end
 end

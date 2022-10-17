@@ -4,12 +4,10 @@ RSpec.describe ServiceOrder, type: :model do
     describe 'gera um código aleatório' do
         it 'ao criar nova ordem de serviço' do
             # Arrange 
-            transportation_modal = TransportationModal.create!(name: 'Bicicleta', max_distance: 10 , min_distance: 1,
-                max_weight: 8, min_weight: 0, flat_rate: 5, status: :active)
             service_order = ServiceOrder.new(pickup_address: 'Rua das Amoras, 52 - Campinas/SP', 
             product_code: 'CX124060', weight: 5, width: 20, height: 40, depth: 50, 
             recipient_name: 'Maria Carvalho', recipient_address: 'Rua das Laranjeiras, 15 - Campinas/SP', 
-            recipient_phone: '019985463251', distance: 7, delivery_time: nil, status: :pending ,total_cost:nil)
+            recipient_phone: '019985463251', distance: 7)
 
             # Act
             service_order.save!
@@ -22,12 +20,10 @@ RSpec.describe ServiceOrder, type: :model do
 
         it 'e o código é único' do
             # Arrange
-            transportation_modal = TransportationModal.create!(name: 'Bicicleta', max_distance: 10 , min_distance: 1,
-                max_weight: 8, min_weight: 0, flat_rate: 5, status: :active)
             service_order = ServiceOrder.new(pickup_address: 'Rua das Amoras, 52 - Campinas/SP', 
             product_code: 'CX124060', weight: 5, width: 20, height: 40, depth: 50, 
             recipient_name: 'Maria Carvalho', recipient_address: 'Rua das Laranjeiras, 15 - Campinas/SP', 
-            recipient_phone: '019985463251', distance: 7, delivery_time: nil, status: :pending ,total_cost:nil)
+            recipient_phone: '019985463251', distance: 7)
             other_service_order = ServiceOrder.create!(pickup_address: 'R. França, 539 - Jardim Europa, São Paulo - SP, 01446-010',
             product_code: 'CX752169', weight: 15, width: 50, height: 70, depth:70, recipient_name: 'Francisco Quintal', 
             recipient_address: 'R. Sebastião Walter Fusco, 309 - Cidade Soinco, Guarulhos - SP, 07182-230', 
@@ -42,12 +38,10 @@ RSpec.describe ServiceOrder, type: :model do
 
         it 'e não deve ser modificado' do
             # Arrange 
-            transportation_modal = TransportationModal.create!(name: 'Bicicleta', max_distance: 10 , min_distance: 1,
-                max_weight: 8, min_weight: 0, flat_rate: 5, status: :active)
             service_order = ServiceOrder.create!(pickup_address: 'Rua das Amoras, 52 - Campinas/SP', 
             product_code: 'CX124060', weight: 5, width: 20, height: 40, depth: 50, 
             recipient_name: 'Maria Carvalho', recipient_address: 'Rua das Laranjeiras, 15 - Campinas/SP', 
-            recipient_phone: '019985463251', distance: 7, delivery_time: nil, status: :pending ,total_cost:nil)
+            recipient_phone: '019985463251', distance: 7)
             original_code = service_order.code    
 
             # Act
@@ -101,8 +95,269 @@ RSpec.describe ServiceOrder, type: :model do
         end
     end
 
+    describe '#valid?' do
+        context 'presence' do
+            it 'false se pickup address estiver em branco' do    
+                # Arrange 
+                service_order = ServiceOrder.new(pickup_address: '', 
+                product_code: 'CX124060', weight: 5, width: 20, height: 40, depth: 50, 
+                recipient_name: 'Maria Carvalho', recipient_address: 'Rua das Laranjeiras, 15 - Campinas/SP', 
+                recipient_phone: '019985463251', distance: 7)
+
+                # Act
+                result = service_order.valid?
+
+                # Assert
+                expect(result).to eq false
+            end
+
+            it 'false se product_code estiver em branco' do    
+                # Arrange 
+                service_order = ServiceOrder.new(pickup_address: 'Rua das Amoras, 52 - Campinas/SP', 
+                product_code: '', weight: 5, width: 20, height: 40, depth: 50, 
+                recipient_name: 'Maria Carvalho', recipient_address: 'Rua das Laranjeiras, 15 - Campinas/SP', 
+                recipient_phone: '019985463251', distance: 7)
+
+                # Act
+                result = service_order.valid?
+
+                # Assert
+                expect(result).to eq false
+            end
+
+            it 'false se weight estiver em branco' do    
+                # Arrange 
+                service_order = ServiceOrder.new(pickup_address: 'Rua das Amoras, 52 - Campinas/SP', 
+                product_code: 'CX124060', weight: nil, width: 20, height: 40, depth: 50, 
+                recipient_name: 'Maria Carvalho', recipient_address: 'Rua das Laranjeiras, 15 - Campinas/SP', 
+                recipient_phone: '019985463251', distance: 7)
+
+                # Act
+                result = service_order.valid?
+
+                # Assert
+                expect(result).to eq false
+            end
+
+            it 'false se width estiver em branco' do    
+                # Arrange 
+                service_order = ServiceOrder.new(pickup_address: 'Rua das Amoras, 52 - Campinas/SP', 
+                product_code: 'CX124060', weight: 5, width: nil, height: 40, depth: 50, 
+                recipient_name: 'Maria Carvalho', recipient_address: 'Rua das Laranjeiras, 15 - Campinas/SP', 
+                recipient_phone: '019985463251', distance: 7)
+
+                # Act
+                result = service_order.valid?
+
+                # Assert
+                expect(result).to eq false
+            end
+
+            it 'false se height estiver em branco' do    
+                # Arrange 
+                service_order = ServiceOrder.new(pickup_address: 'Rua das Amoras, 52 - Campinas/SP', 
+                product_code: 'CX124060', weight: 5, width: 20, height: nil, depth: 50, 
+                recipient_name: 'Maria Carvalho', recipient_address: 'Rua das Laranjeiras, 15 - Campinas/SP', 
+                recipient_phone: '019985463251', distance: 7)
+
+                # Act
+                result = service_order.valid?
+
+                # Assert
+                expect(result).to eq false
+            end
+
+            it 'false se depth estiver em branco' do    
+                # Arrange 
+                service_order = ServiceOrder.new(pickup_address: 'Rua das Amoras, 52 - Campinas/SP', 
+                product_code: 'CX124060', weight: 5, width: 20, height: 40, depth: nil, 
+                recipient_name: 'Maria Carvalho', recipient_address: 'Rua das Laranjeiras, 15 - Campinas/SP', 
+                recipient_phone: '019985463251', distance: 7)
+
+                # Act
+                result = service_order.valid?
+
+                # Assert
+                expect(result).to eq false
+            end
+
+            it 'false se recipient name estiver em branco' do    
+                # Arrange 
+                service_order = ServiceOrder.new(pickup_address: 'Rua das Amoras, 52 - Campinas/SP', 
+                product_code: 'CX124060', weight: 5, width: 20, height: 40, depth: 50, 
+                recipient_name: '', recipient_address: 'Rua das Laranjeiras, 15 - Campinas/SP', 
+                recipient_phone: '019985463251', distance: 7)
+
+                # Act
+                result = service_order.valid?
+
+                # Assert
+                expect(result).to eq false
+            end
+
+            it 'false se recipient address estiver em branco' do    
+                # Arrange 
+                service_order = ServiceOrder.new(pickup_address: 'Rua das Amoras, 52 - Campinas/SP', 
+                product_code: 'CX124060', weight: 5, width: 20, height: 40, depth: 50, 
+                recipient_name: 'Maria Carvalho', recipient_address: '', 
+                recipient_phone: '019985463251', distance: 7)
+
+                # Act
+                result = service_order.valid?
+
+                # Assert
+                expect(result).to eq false
+            end
+
+            it 'false se recipient phone estiver em branco' do    
+                # Arrange 
+                service_order = ServiceOrder.new(pickup_address: 'Rua das Amoras, 52 - Campinas/SP', 
+                product_code: 'CX124060', weight: 5, width: 20, height: 40, depth: 50, 
+                recipient_name: 'Maria Carvalho', recipient_address: 'Rua das Laranjeiras, 15 - Campinas/SP', 
+                recipient_phone: '', distance: 7)
+
+                # Act
+                result = service_order.valid?
+
+                # Assert
+                expect(result).to eq false
+            end
+
+            it 'false se distance estiver em branco' do    
+                # Arrange 
+                service_order = ServiceOrder.new(pickup_address: 'Rua das Amoras, 52 - Campinas/SP', 
+                product_code: 'CX124060', weight: 5, width: 20, height: 40, depth: 50, 
+                recipient_name: 'Maria Carvalho', recipient_address: 'Rua das Laranjeiras, 15 - Campinas/SP', 
+                recipient_phone: '019985463251', distance: nil)
+
+                # Act
+                result = service_order.valid?
+
+                # Assert
+                expect(result).to eq false
+            end
+        end
+    
+
+        context 'numericality' do
+            it 'false quando weight é 0' do 
+                # Arrange
+                service_order = ServiceOrder.new(pickup_address: 'Rua das Amoras, 52 - Campinas/SP', 
+                    product_code: 'CX124060', weight: 0, width: 20, height: 40, depth: 50, 
+                    recipient_name: 'Maria Carvalho', recipient_address: 'Rua das Laranjeiras, 15 - Campinas/SP', 
+                    recipient_phone: '019985463251', distance: 7)
+        
+                # Act
+                result = service_order.valid?
+
+                # Assert
+                expect(result).to eq false
+            end
+
+            it 'false quando height é 0' do 
+                # Arrange
+                service_order = ServiceOrder.new(pickup_address: 'Rua das Amoras, 52 - Campinas/SP', 
+                    product_code: 'CX124060', weight: 5, width: 20, height: 0, depth: 50, 
+                    recipient_name: 'Maria Carvalho', recipient_address: 'Rua das Laranjeiras, 15 - Campinas/SP', 
+                    recipient_phone: '019985463251', distance: 7)
+        
+                # Act
+                result = service_order.valid?
+
+                # Assert
+                expect(result).to eq false
+            end
+
+            it 'false quando width é 0' do 
+                # Arrange
+                service_order = ServiceOrder.new(pickup_address: 'Rua das Amoras, 52 - Campinas/SP', 
+                    product_code: 'CX124060', weight: 5, width: 0, height: 40, depth: 50, 
+                    recipient_name: 'Maria Carvalho', recipient_address: 'Rua das Laranjeiras, 15 - Campinas/SP', 
+                    recipient_phone: '019985463251', distance: 7)
+        
+                # Act
+                result = service_order.valid?
+
+                # Assert
+                expect(result).to eq false
+            end
+
+            it 'false quando depth é 0' do 
+                # Arrange
+                service_order = ServiceOrder.new(pickup_address: 'Rua das Amoras, 52 - Campinas/SP', 
+                    product_code: 'CX124060', weight: 5, width: 20, height: 40, depth: 0, 
+                    recipient_name: 'Maria Carvalho', recipient_address: 'Rua das Laranjeiras, 15 - Campinas/SP', 
+                    recipient_phone: '019985463251', distance: 7)
+        
+                # Act
+                result = service_order.valid?
+
+                # Assert
+                expect(result).to eq false
+            end
+
+            it 'false quando distance é 0' do 
+                # Arrange
+                service_order = ServiceOrder.new(pickup_address: 'Rua das Amoras, 52 - Campinas/SP', 
+                    product_code: 'CX124060', weight: 5, width: 20, height: 40, depth: 50, 
+                    recipient_name: 'Maria Carvalho', recipient_address: 'Rua das Laranjeiras, 15 - Campinas/SP', 
+                    recipient_phone: '019985463251', distance: 0)
+        
+                # Act
+                result = service_order.valid?
+
+                # Assert
+                expect(result).to eq false
+            end
+        end
+    end
+
     describe 'close' do
-        it 'atualiza status para entregue no prazo' do            
+        it 'atualiza a data de encerramento da ordem de serviço' do
+            # Arrange
+            service_order = ServiceOrder.create!(pickup_address: 'Rua das Amoras, 52 - Campinas/SP', 
+                product_code: 'CX124060', weight: 5, width: 20, height: 40, depth: 50, 
+                recipient_name: 'Maria Carvalho', recipient_address: 'Rua das Laranjeiras, 15 - Campinas/SP', 
+                recipient_phone: '019985463251', distance: 7, delivery_time: 24, ship_date: 1.day.ago)
+            original_delivery_date = service_order.delivery_date
+
+            # Act
+            service_order.close
+            delivery_date = service_order.delivery_date
+
+            # Assert
+            expect(delivery_date).to eq Date.today
+            expect(original_delivery_date).to eq nil
+        end
+
+        it 'atualiza o status para on time quando entregue no prazo' do
+            # Arrange
+            service_order = ServiceOrder.create!(pickup_address: 'Rua das Amoras, 52 - Campinas/SP', 
+                product_code: 'CX124060', weight: 5, width: 20, height: 40, depth: 50, 
+                recipient_name: 'Maria Carvalho', recipient_address: 'Rua das Laranjeiras, 15 - Campinas/SP', 
+                recipient_phone: '019985463251', distance: 7, delivery_time: 48, ship_date: 1.day.ago)
+
+            # Act
+            service_order.close
+            result = service_order.ontime?
+
+            # Assert
+            expect(result).to eq true
+        end
+
+        it 'atualiza o status para delayed quando entregue atrasado' do
+            # Arrange
+            service_order = ServiceOrder.create!(pickup_address: 'Rua das Amoras, 52 - Campinas/SP', 
+                product_code: 'CX124060', weight: 5, width: 20, height: 40, depth: 50, 
+                recipient_name: 'Maria Carvalho', recipient_address: 'Rua das Laranjeiras, 15 - Campinas/SP', 
+                recipient_phone: '019985463251', distance: 7, delivery_time: 24, ship_date: 2.day.ago)
+
+            # Act
+            service_order.close
+            result = service_order.delayed?
+
+            # Assert
+            expect(result).to eq true
         end
     end
 end

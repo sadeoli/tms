@@ -10,7 +10,7 @@ RSpec.describe Timescale, type: :model do
                 timescale = Timescale.new(min_distance: nil,max_distance:10,deadline:24,transportation_modal:transportation_modal)
 
                 # Act
-                result = timescale.save
+                result = timescale.valid?
 
                 # Assert
                 expect(result).to eq false
@@ -23,7 +23,7 @@ RSpec.describe Timescale, type: :model do
                 timescale = Timescale.new(min_distance: 1,max_distance:nil,deadline:24,transportation_modal:transportation_modal)
 
                 # Act
-                result = timescale.save
+                result = timescale.valid?
 
                 # Assert
                 expect(result).to eq false
@@ -36,7 +36,7 @@ RSpec.describe Timescale, type: :model do
                 timescale = Timescale.new(min_distance: 1,max_distance:10,deadline:nil,transportation_modal:transportation_modal)
 
                 # Act
-                result = timescale.save
+                result = timescale.valid?
 
                 # Assert
                 expect(result).to eq false
@@ -51,7 +51,7 @@ RSpec.describe Timescale, type: :model do
                 timescale = Timescale.new(min_distance: 1,max_distance:10,deadline: 0,transportation_modal:transportation_modal)
 
                 # Act
-                result = timescale.save
+                result = timescale.valid?
 
                 # Assert
                 expect(result).to eq false
@@ -66,10 +66,11 @@ RSpec.describe Timescale, type: :model do
                 timescale = Timescale.new(min_distance: 0,max_distance:10,deadline: 0,transportation_modal:transportation_modal)
 
                 # Act
-                result = timescale.save
+                result = timescale.valid?
 
                 # Assert
                 expect(result).to eq false
+                expect(timescale.errors.include?(:min_distance)).to be true
             end
         end
 
@@ -81,10 +82,11 @@ RSpec.describe Timescale, type: :model do
                 timescale = Timescale.new(min_distance: 0,max_distance:11,deadline: 0,transportation_modal:transportation_modal)
 
                 # Act
-                result = timescale.save
+                result = timescale.valid?
 
                 # Assert
                 expect(result).to eq false
+                expect(timescale.errors.include?(:max_distance)).to be true
             end 
         end
 
@@ -97,10 +99,11 @@ RSpec.describe Timescale, type: :model do
                 timescale = Timescale.new(min_distance: 2,max_distance:10,deadline:24,transportation_modal:transportation_modal)
 
                 # Act
-                result = timescale.save
+                result = timescale.valid?
 
                 # Assert
                 expect(result).to eq false
+                expect(timescale.errors.include?(:min_distance)).to be true
             end
 
             it 'false when maximum is already in use' do
@@ -111,10 +114,11 @@ RSpec.describe Timescale, type: :model do
                 timescale = Timescale.new(min_distance: 1,max_distance:7,deadline:24,transportation_modal:transportation_modal)
     
                 # Act
-                result = timescale.save
+                result = timescale.valid?
 
                 # Assert
                 expect(result).to eq false
+                expect(timescale.errors.include?(:max_distance)).to be true
             end
         end
     end

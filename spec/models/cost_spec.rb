@@ -10,7 +10,7 @@ RSpec.describe Cost, type: :model do
                 cost = Cost.new(category: nil, minimum:5, maximum:10,unit_price:3, transportation_modal:transportation_modal)
 
                 # Act
-                result = cost.save
+                result = cost.valid?
 
                 # Assert
                 expect(result).to eq false
@@ -23,7 +23,7 @@ RSpec.describe Cost, type: :model do
                 cost = Cost.new(category: :distance, minimum:'', maximum:10,unit_price:3, transportation_modal:transportation_modal)
 
                 # Act
-                result = cost.save
+                result = cost.valid?
 
                 # Assert
                 expect(result).to eq false
@@ -36,7 +36,7 @@ RSpec.describe Cost, type: :model do
                 cost = Cost.new(category: :distance, minimum:5, maximum: '',unit_price:3, transportation_modal:transportation_modal)
 
                 # Act
-                result = cost.save
+                result = cost.valid?
 
                 # Assert
                 expect(result).to eq false
@@ -49,7 +49,7 @@ RSpec.describe Cost, type: :model do
                 cost = Cost.new(category: :distance, minimum:5, maximum:10,unit_price: '', transportation_modal:transportation_modal)
 
                 # Act
-                result = cost.save
+                result = cost.valid?
 
                 # Assert
                 expect(result).to eq false
@@ -79,10 +79,11 @@ RSpec.describe Cost, type: :model do
                 cost = Cost.new(category: :distance, minimum:0, maximum:10, unit_price: 3, transportation_modal:transportation_modal)
 
                 # Act
-                result = cost.save
+                result = cost.valid?
 
                 # Assert
                 expect(result).to eq false
+                expect(cost.errors.include?(:minimum)).to be true
             end
 
             it 'false when weight attribute' do
@@ -92,10 +93,11 @@ RSpec.describe Cost, type: :model do
                 cost = Cost.new(category: :weight, minimum:0, maximum:10, unit_price: 3, transportation_modal:transportation_modal)
 
                 # Act
-                result = cost.save
+                result = cost.valid?
 
                 # Assert
                 expect(result).to eq false
+                expect(cost.errors.include?(:minimum)).to be true
             end
         end
 
@@ -107,10 +109,11 @@ RSpec.describe Cost, type: :model do
                 cost = Cost.new(category: :distance, minimum:2, maximum:15, unit_price: 3, transportation_modal:transportation_modal)
 
                 # Act
-                result = cost.save
+                result = cost.valid?
 
                 # Assert
                 expect(result).to eq false
+                expect(cost.errors.include?(:maximum)).to be true
             end
 
             it 'false when weight attribute' do
@@ -120,10 +123,11 @@ RSpec.describe Cost, type: :model do
                 cost = Cost.new(category: :weight, minimum:2, maximum:10, unit_price: 3, transportation_modal:transportation_modal)
 
                 # Act
-                result = cost.save
+                result = cost.valid?
 
                 # Assert
                 expect(result).to eq false
+                expect(cost.errors.include?(:maximum)).to be true
             end
         end
 
@@ -136,10 +140,11 @@ RSpec.describe Cost, type: :model do
                 cost = Cost.new(category: :weight, minimum:3, maximum:8, unit_price: 3, transportation_modal:transportation_modal)
 
                 # Act
-                result = cost.save
+                result = cost.valid?
 
                 # Assert
                 expect(result).to eq false
+                expect(cost.errors.include?(:minimum)).to be true
             end
 
             it 'false when maximum is already in use' do
@@ -150,10 +155,11 @@ RSpec.describe Cost, type: :model do
                 cost = Cost.new(category: :weight, minimum:2, maximum:7, unit_price: 3, transportation_modal:transportation_modal)
 
                 # Act
-                result = cost.save
+                result = cost.valid?
 
                 # Assert
                 expect(result).to eq false
+                expect(cost.errors.include?(:maximum)).to be true
             end
         end
     end

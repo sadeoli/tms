@@ -145,7 +145,7 @@ RSpec.describe Vehicle, type: :model do
                 manufacture_year: 2015, transportation_modal:transportation_modal, status: :working)
 
             # Act
-            vehicle.save            
+            vehicle.save!            
 
             # Assert
             expect(vehicle.max_weight).to eq 8

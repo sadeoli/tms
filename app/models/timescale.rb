@@ -24,7 +24,7 @@ class Timescale < ApplicationRecord
     def range_is_unique
       Timescale.where(transportation_modal:self.transportation_modal).each do |other_timescale|
         if other_timescale.min_distance < self.min_distance && other_timescale.max_distance > self.min_distance
-            errors.add(:minimum, "já cadastrado")
+            errors.add(:min_distance, "já cadastrado")
         end
         if other_timescale.min_distance < self.max_distance && other_timescale.max_distance > self.max_distance
             errors.add(:max_distance, "já cadastrado")
