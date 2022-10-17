@@ -1,6 +1,6 @@
 class ServiceOrdersController < ApplicationController
-    before_action :set_service_order, only: [:show, :calculated, :closed, :update, :edit]
-    before_action only: [:new, :create, :edit, :update] do
+    before_action :set_service_order, only: [:show, :calculated, :closed]
+    before_action only: [:new, :create] do
         redirect_to root_path unless current_user && current_user.admin?
     end
 
@@ -22,13 +22,6 @@ class ServiceOrdersController < ApplicationController
         end
     end
 
-    def update
-        @service_order.update(service_order_params)
-        redirect_to @service_order, notice: 'Ordem de serviço atualizada com sucesso.'
-    end
-
-    def edit
-    end
 
     def calculated
         @service_order.calculate

@@ -2,13 +2,14 @@ Rails.application.routes.draw do
   devise_for :users
   root to: 'home#index'
   
-  resources :service_orders do
+  resources :service_orders, except: [:index, :show, :new, :create, :edit, :update,:destroy] do
     get 'search', on: :collection
   end
+  
 
   authenticate :user do
-    resources :service_orders, only: [:index, :show, :new, :create, :edit, :update] do
-      resources :calculations, only: [:index, :show, :new, :create] do
+    resources :service_orders, only: [:index, :show, :new, :create] do
+      resources :calculations, except: [:index, :show, :new, :create, :edit, :update,:destroy]  do
         post 'started', on: :member
       end
       post 'calculated', on: :member
