@@ -2,7 +2,7 @@ class TimescalesController < ApplicationController
     before_action :set_transportation_modal, only: [:create, :new, :update, :edit]
     before_action :set_timescale, only: [:update, :edit]
     before_action only: [:new, :create, :update, :edit] do
-        redirect_to root_path unless current_user && current_user.admin?
+        redirect_to root_path, alert: 'ACESSO NEGADO' unless current_user && current_user.admin?
     end
 
     def new

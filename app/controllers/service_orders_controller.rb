@@ -1,7 +1,7 @@
 class ServiceOrdersController < ApplicationController
     before_action :set_service_order, only: [:show, :calculated, :closed, :edit, :update]
     before_action only: [:new, :create, :update, :edit] do
-        redirect_to root_path unless current_user && current_user.admin?
+        redirect_to root_path, alert: 'ACESSO NEGADO' unless current_user && current_user.admin?
     end
 
     def index
