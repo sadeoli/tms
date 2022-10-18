@@ -13,11 +13,24 @@
 <dt class="col-sm-3"><%=ServiceOrder.human_attribute_name(:vehicle)%></dt>
 <dd class="col-sm-9"><%=@service_order.vehicle.transportation_modal.name%> <%=@service_order.vehicle.license_plate%></dd>
 
-<dt class="col-sm-3"><%=ServiceOrder.human_attribute_name(:status)%></dt>
-<dd class="col-sm-9"><%=I18n.t(@service_order.status).upcase%></dd>
+<dt class="col-sm-3"><%=ServiceOrder.human_attribute_name(:ship_date)%></dt>
+<dd class="col-sm-9"><%=I18n.t(@service_order.ship_date)%></dd>
 
 <dt class="col-sm-3"><%=ServiceOrder.human_attribute_name(:delivery_time)%></dt>
 <dd class="col-sm-9"><%=@service_order.delivery_time%> horas</dd>
+
+<% if !@service_order.intransit?%>
+<dt class="col-sm-3"><%=ServiceOrder.human_attribute_name(:delivery_date)%></dt>
+<dd class="col-sm-9"><%=I18n.t(@service_order.delivery_date)%></dd>
+<% end %>
+
+<dt class="col-sm-3"><%=ServiceOrder.human_attribute_name(:status)%></dt>
+<dd class="col-sm-9"><%=I18n.t(@service_order.status).upcase%></dd>
+
+<% if @service_order.delayed?%>
+<dt class="col-sm-3"><%=ServiceOrder.human_attribute_name(:delay_reason)%></dt>
+<dd class="col-sm-9"><%=@service_order.delay_reason%></dd>
+<% end %>
 
 </dl>
 </div>
