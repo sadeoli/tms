@@ -15,6 +15,7 @@ As gems presentes do projeto são:
 1. Gem "rspec-rails" - Realização de testes
 2. Gem "capybara" - Realização de testes
 3. Gem "devise" - Auxílio na gestão de usuários e autenticação
+4. Gem 'rails-controller-testing' - Realização de testes de request: Verificação de templates.
 
 
 ___Usuários

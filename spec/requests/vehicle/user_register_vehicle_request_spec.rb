@@ -1,59 +1,60 @@
 require 'rails_helper'
 
-describe 'Usuário edita uma modalidade de transporte' do
-    context 'edit' do
+describe 'Usuário cria um veículo' do
+    context 'new' do
         it 'e é regular' do
             # Arrange
-            transportation_modal = TransportationModal.create!(name: 'Bicicleta', max_distance: 10 , min_distance: 1,
-                max_weight: 8, min_weight: 0, flat_rate: 5, status: :active)
             user = User.create!(email: 'usuario@sistemadefrete.com.br', password: 'password', access_group: :regular)
             
             # Act
             login_as(user)
-            patch(transportation_modal_path(transportation_modal.id), params: { transportation_modal: { flat_rate: 2}})
+            get(new_vehicle_path)
 
             # Assert
+            expect(response).not_to be_successful
             expect(response).to redirect_to root_path
+            expect(response).not_to render_template(:new)
+
         end
 
-        it 'e é administrador' do
+        it 'e é admin' do
             # Arrange
-            transportation_modal = TransportationModal.create!(name: 'Bicicleta', max_distance: 10 , min_distance: 1,
-                max_weight: 8, min_weight: 0, flat_rate: 5, status: :active)
             user = User.create!(email: 'usuario@sistemadefrete.com.br', password: 'password', access_group: :admin)
             
             # Act
             login_as(user)
-            patch(transportation_modal_path(transportation_modal.id), params: { transportation_modal: { flat_rate: 2}})
+            get(new_vehicle_path)
 
             # Assert
-            expect(response).not_to redirect_to root_path
-            expect(response).to redirect_to transportation_modal
+            expect(response).to be_successful
+            expect(response).to render_template(:new)
         end
 
         it 'e é visitante' do
             # Arrange
-            transportation_modal = TransportationModal.create!(name: 'Bicicleta', max_distance: 10 , min_distance: 1,
-                max_weight: 8, min_weight: 0, flat_rate: 5, status: :active)
             
             # Act
-            patch(transportation_modal_path(transportation_modal.id), params: { transportation_modal: { flat_rate: 2}})
+            get(new_vehicle_path)
 
             # Assert
+            expect(response).not_to be_successful
             expect(response).to redirect_to user_session_path
+            expect(response).not_to render_template(:new)
         end
+
     end
 
-    context 'inactived' do
+    context 'create' do
         it 'e é regular' do
             # Arrange
+            user = User.create!(email: 'usuario@sistemadefrete.com.br', password: 'password', access_group: :regular)
             transportation_modal = TransportationModal.create!(name: 'Bicicleta', max_distance: 10 , min_distance: 1,
                 max_weight: 8, min_weight: 0, flat_rate: 5, status: :active)
-            user = User.create!(email: 'usuario@sistemadefrete.com.br', password: 'password', access_group: :regular)
-            
+
             # Act
             login_as(user)
-            post(inactived_transportation_modal_path(transportation_modal.id))
+            post(vehicles_path, params: { vehicle: { license_plate: 'HUIK-5232', model: 'City Tour', brand: 'Caloi', max_weight: '5', 
+                manufacture_year: '2015', transportation_modal:transportation_modal, status: :active}})
 
             # Assert
             expect(response).to redirect_to root_path
@@ -61,17 +62,18 @@ describe 'Usuário edita uma modalidade de transporte' do
 
         it 'e é administrador' do
             # Arrange
+            user = User.create!(email: 'usuario@sistemadefrete.com.br', password: 'password', access_group: :admin)
             transportation_modal = TransportationModal.create!(name: 'Bicicleta', max_distance: 10 , min_distance: 1,
                 max_weight: 8, min_weight: 0, flat_rate: 5, status: :active)
-            user = User.create!(email: 'usuario@sistemadefrete.com.br', password: 'password', access_group: :admin)
-            
+
             # Act
             login_as(user)
-            post(inactived_transportation_modal_path(transportation_modal.id))
+            post(vehicles_path, params: { vehicle: {license_plate: 'HUIK-5232', model: 'City Tour', brand: 'Caloi', max_weight: 5, 
+                manufacture_year: 2015, transportation_modal_id:transportation_modal[:id], status: :active}})
 
             # Assert
             expect(response).not_to redirect_to root_path
-            expect(response).to redirect_to transportation_modal
+            expect(response).to redirect_to vehicles_path
         end
 
         it 'e é visitante' do
@@ -80,8 +82,9 @@ describe 'Usuário edita uma modalidade de transporte' do
                 max_weight: 8, min_weight: 0, flat_rate: 5, status: :active)
             
             # Act
-            post(inactived_transportation_modal_path(transportation_modal.id))
-            
+            post(vehicles_path, params: { vehicle: { license_plate: 'HUIK-5232', model: 'City Tour', brand: 'Caloi', max_weight: '5', 
+                manufacture_year: '2015', transportation_modal:transportation_modal, status: :active}})
+
             # Assert
             expect(response).to redirect_to user_session_path
         end

@@ -27,7 +27,7 @@ describe 'Usuário edita um veículo' do
         
         # Act
         login_as(user)
-        patch(vehicle_path(vehicle.id), params: { vehicle: { status: :maintenance}})
+        patch(vehicle_path(vehicle.id), params: {vehicle: {status: :maintenance}})
 
         # Assert
         expect(response).not_to redirect_to root_path
