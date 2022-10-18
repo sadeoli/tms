@@ -8,12 +8,13 @@ Rails.application.routes.draw do
   
 
   authenticate :user do
-    resources :service_orders, only: [:index, :show, :new, :create] do
+    resources :service_orders, only: [:index, :show, :new, :create, :edit, :update] do
       resources :calculations, except: [:index, :show, :new, :create, :edit, :update,:destroy]  do
         post 'started', on: :member
       end
       post 'calculated', on: :member
       post 'closed', on: :member
+      post 'filter', on: :collection
     end
     resources :vehicles, only: [:index, :new, :create, :edit, :update] do
       get 'search', on: :collection

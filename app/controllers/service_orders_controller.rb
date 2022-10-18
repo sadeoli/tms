@@ -1,6 +1,6 @@
 class ServiceOrdersController < ApplicationController
-    before_action :set_service_order, only: [:show, :calculated, :closed]
-    before_action only: [:new, :create] do
+    before_action :set_service_order, only: [:show, :calculated, :closed, :edit, :update]
+    before_action only: [:new, :create, :update, :edit] do
         redirect_to root_path unless current_user && current_user.admin?
     end
 
@@ -20,6 +20,23 @@ class ServiceOrdersController < ApplicationController
             flash.now[:alert] = 'Ordem de serviço não cadastrado.'
             render 'new'
         end
+    end
+
+    def edit
+    end
+
+    def update
+        if @service_order.update(service_order_params)
+            redirect_to @service_order, notice: 'Ordem de serviço atualizada com sucesso.'
+        else
+            flash.now[:notice] = 'Não foi possível atualizar a ordem de serviço.'
+            render 'edit'
+        end
+    end
+
+    def filter
+        @service_orders = ServiceOrder.where(status: :pending)
+        render 'index'
     end
 
 

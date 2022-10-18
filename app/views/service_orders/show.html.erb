@@ -90,3 +90,7 @@
         <dd class="col-sm-9"><%=@service_order.delay_reason%></dd>
     <% end %>
 <% end %>
+
+<% if current_user.admin? && @service_order.pending? %>
+    <%= link_to 'Editar', edit_service_order_path(@service_order), class:"btn btn-outline-dark btn-sm m-2"%>
+<% end %>
