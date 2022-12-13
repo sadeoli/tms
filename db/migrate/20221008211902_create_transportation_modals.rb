@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateTransportationModals < ActiveRecord::Migration[7.0]
   def change
     create_table :transportation_modals do |t|
@@ -7,7 +9,7 @@ class CreateTransportationModals < ActiveRecord::Migration[7.0]
       t.integer :max_weight
       t.integer :min_weight
       t.integer :flat_rate
-      t.integer :status, default:0
+      t.integer :status, default: 0
 
       t.timestamps
     end
