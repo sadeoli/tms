@@ -1,4 +1,8 @@
 pt-BR:
+  timescale_created: 'Prazo cadastrado com sucesso.'
+  timescale_not_created: 'Prazo não cadastrado.'
+  timescale_updated: 'Prazo atualizado com sucesso.'
+  timescale_not_updated: 'Não foi possível atualizar o prazo.'
   activerecord:
     models:
       timescales: 

@@ -2,6 +2,11 @@ pt-BR:
   active: "Ativo"
   working: "Operando"
   maintenance: "Em manutenção"
+  vehicle_created: 'Veículo cadastrado com sucesso.'
+  vehicle_not_created: 'Veículo não cadastrado.'
+  vehicle_updated: 'Veículo atualizado com sucesso.'
+  vehicle_not_updated: 'Não foi possível atualizar o veículo.'
+  vehicle_not_found: 'Não foi possível encontrar o veículo.'
   activerecord:
     models:
       vehicle: 

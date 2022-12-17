@@ -51,8 +51,10 @@ describe 'Usuário cria um veículo' do
 
       # Act
       login_as(user)
-      post(transportation_modals_path, params: { transportation_modal: { name: 'Bicicleta', max_distance: 10, min_distance: 1,
-                                                                         max_weight: 8, min_weight: 0, flat_rate: 5, status: :active } })
+      post(transportation_modals_path, params: { transportation_modal: { name: 'Bicicleta', max_distance: 10,
+                                                                         min_distance: 1, max_weight: 8,
+                                                                         min_weight: 0, flat_rate: 5,
+                                                                         status: :active } })
 
       # Assert
       expect(response).to redirect_to root_path
@@ -64,8 +66,10 @@ describe 'Usuário cria um veículo' do
 
       # Act
       login_as(user)
-      post(transportation_modals_path, params: { transportation_modal: { name: 'Bicicleta', max_distance: 10, min_distance: 1,
-                                                                         max_weight: 8, min_weight: 0, flat_rate: 5, status: :active } })
+      post(transportation_modals_path, params: { transportation_modal: { name: 'Bicicleta', max_distance: 10,
+                                                                         min_distance: 1, max_weight: 8,
+                                                                         min_weight: 0, flat_rate: 5,
+                                                                         status: :active } })
 
       # Assert
       expect(response).not_to redirect_to root_path
@@ -76,8 +80,10 @@ describe 'Usuário cria um veículo' do
       # Arrange
 
       # Act
-      post(transportation_modals_path, params: { transportation_modal: { name: 'Bicicleta', max_distance: 10, min_distance: 1,
-                                                                         max_weight: 8, min_weight: 0, flat_rate: 5, status: :active } })
+      post(transportation_modals_path, params: { transportation_modal: { name: 'Bicicleta', max_distance: 10,
+                                                                         min_distance: 1, max_weight: 8,
+                                                                         min_weight: 0, flat_rate: 5,
+                                                                         status: :active } })
 
       # Assert
       expect(response).to redirect_to user_session_path

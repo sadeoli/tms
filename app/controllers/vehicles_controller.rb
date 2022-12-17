@@ -2,7 +2,7 @@
 
 class VehiclesController < ApplicationController
   before_action only: %i[new create edit update] do
-    redirect_to root_path, alert: 'ACESSO NEGADO' unless current_user&.admin?
+    redirect_to root_path, alert: t(:access_denied) unless current_user&.admin?
   end
 
   before_action :set_vehicle, only: %i[edit update show]
@@ -23,20 +23,20 @@ class VehiclesController < ApplicationController
   def create
     @vehicle = Vehicle.new(vehicle_params)
     if @vehicle.save
-      redirect_to vehicles_path, notice: 'Veículo cadastrado com sucesso.'
+      redirect_to vehicles_path, notice: t(:vehicle_created)
     else
       @transportation_modals = TransportationModal.all
-      flash.now[:alert] = 'Veículo não cadastrado.'
+      flash.now[:alert] = t(:vehicle_not_created)
       render 'new'
     end
   end
 
   def update
     if @vehicle.update(vehicle_params)
-      redirect_to vehicles_path, notice: 'Veículo atualizado com sucesso.'
+      redirect_to vehicles_path, notice: t(:vehicle_updated)
     else
       @transportation_modals = TransportationModal.all
-      flash.now[:alert] = 'Não foi possível atualizar o veículo.'
+      flash.now[:alert] = t(:vehicle_not_updated)
       render 'edit'
     end
   end
@@ -44,7 +44,7 @@ class VehiclesController < ApplicationController
   def search
     @code = params[:query]
     @vehicles = Vehicle.where('license_plate LIKE ?', "%#{@code}%")
-    redirect_to vehicles_path, alert: 'Não foi possível encontrar o veículo.' if @vehicles.empty?
+    redirect_to vehicles_path, alert: t(:vehicle_not_found) if @vehicles.empty?
   end
 
   private

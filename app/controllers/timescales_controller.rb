@@ -4,7 +4,7 @@ class TimescalesController < ApplicationController
   before_action :set_transportation_modal, only: %i[create new update edit]
   before_action :set_timescale, only: %i[update edit]
   before_action only: %i[new create update edit] do
-    redirect_to root_path, alert: 'ACESSO NEGADO' unless current_user&.admin?
+    redirect_to root_path, alert: t(:access_denied) unless current_user&.admin?
   end
 
   def new
@@ -16,18 +16,18 @@ class TimescalesController < ApplicationController
   def create
     @timescale = @transportation_modal.timescales.new(timescale_params)
     if @timescale.save
-      redirect_to @transportation_modal, notice: 'Prazo cadastrado com sucesso.'
+      redirect_to @transportation_modal, notice: t(:timescale_created)
     else
-      flash.now[:alert] = 'Prazo não cadastrado.'
+      flash.now[:alert] = t(:timescale_not_created)
       render 'new'
     end
   end
 
   def update
     if @timescale.update(timescale_params)
-      redirect_to @transportation_modal, notice: 'Prazo atualizado com sucesso.'
+      redirect_to @transportation_modal, notice: t(:timescale_updated)
     else
-      flash.now[:alert] = 'Não foi possível atualizar o prazo.'
+      flash.now[:alert] = t(:timescale_not_updated)
       render 'edit'
     end
   end

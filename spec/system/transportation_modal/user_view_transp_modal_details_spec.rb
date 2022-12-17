@@ -6,7 +6,8 @@ describe 'Usuario vê detalhes de uma modalidade de transporte' do
   it 'e seus custos cadastrados' do
     # Arrange
     transportation_modal = TransportationModal.create!(name: 'Bicicleta', max_distance: 10, min_distance: 1,
-                                                       max_weight: 8, min_weight: 0, flat_rate: 5, status: :active)
+                                                       max_weight: 8, min_weight: 0, flat_rate: 5,
+                                                       status: :active)
     TransportationModal.create!(name: 'Motocicleta', max_distance: 100, min_distance: 11,
                                 max_weight: 20, min_weight: 0, flat_rate: 15, status: :active)
     Cost.create!(category: :weight, minimum: 0, maximum: 8, unit_price: 50,
@@ -34,9 +35,11 @@ describe 'Usuario vê detalhes de uma modalidade de transporte' do
   it 'e não vê custos de outra modalidade de transporte' do
     # Arrange
     transportation_modal1 = TransportationModal.create!(name: 'Bicicleta', max_distance: 10, min_distance: 1,
-                                                        max_weight: 8, min_weight: 0, flat_rate: 5, status: :active)
+                                                        max_weight: 8, min_weight: 0, flat_rate: 5,
+                                                        status: :active)
     transportation_modal2 = TransportationModal.create!(name: 'Motocicleta', max_distance: 100, min_distance: 11,
-                                                        max_weight: 20, min_weight: 0, flat_rate: 15, status: :active)
+                                                        max_weight: 20, min_weight: 0, flat_rate: 15,
+                                                        status: :active)
     Cost.create!(category: :weight, minimum: 0, maximum: 8, unit_price: 50,
                  transportation_modal: transportation_modal1)
     Cost.create!(category: :distance, minimum: 15, maximum: 19, unit_price: 30,
@@ -58,7 +61,8 @@ describe 'Usuario vê detalhes de uma modalidade de transporte' do
   it 'e seus prazos' do
     # Arrange
     transportation_modal = TransportationModal.create!(name: 'Bicicleta', max_distance: 10, min_distance: 1,
-                                                       max_weight: 8, min_weight: 0, flat_rate: 5, status: :active)
+                                                       max_weight: 8, min_weight: 0, flat_rate: 5,
+                                                       status: :active)
     user = User.create!(email: 'usuario@sistemadefrete.com.br', password: 'password')
     Timescale.create!(min_distance: 2, max_distance: 8, deadline: 24, transportation_modal:)
 

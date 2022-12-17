@@ -54,6 +54,6 @@ describe 'Usuario registra uma ordem de serviço' do
     click_on 'Cadastrar'
 
     # Assert
-    expect(page).to have_content 'Ordem de serviço não cadastrado.'
+    expect(page).to have_content 'Ordem de serviço não cadastrada.'
   end
 end

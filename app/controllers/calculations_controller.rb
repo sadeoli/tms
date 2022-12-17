@@ -12,7 +12,7 @@ class CalculationsController < ApplicationController
     @vehicles.first.working!
     @service_order.update(total_cost: @calculation.result[:cost], delivery_time: @calculation.result[:time],
                           vehicle: @vehicles.first, ship_date: Time.zone.today)
-    redirect_to @service_order, notice: 'Ordem de serviço iniciada.'
+    redirect_to @service_order, notice: t(:so_started)
   end
 
   private

@@ -4,7 +4,7 @@ class CostsController < ApplicationController
   before_action :set_transportation_modal, only: %i[create new edit update set_cost]
   before_action :set_cost, only: %i[edit update]
   before_action only: %i[new create edit update] do
-    redirect_to root_path, alert: 'ACESSO NEGADO' unless current_user&.admin?
+    redirect_to root_path, alert: t(:access_denied) unless current_user&.admin?
   end
 
   def index
@@ -21,19 +21,19 @@ class CostsController < ApplicationController
   def create
     @cost = @transportation_modal.costs.new(cost_params)
     if @cost.save
-      redirect_to @transportation_modal, notice: 'Preço cadastrado com sucesso.'
+      redirect_to @transportation_modal, notice: t(:cost_created)
     else
       @transportation_modals = TransportationModal.all
-      flash.now[:alert] = 'Preço não cadastrado.'
+      flash.now[:alert] = t(:cost_not_created)
       render 'new'
     end
   end
 
   def update
     if @cost.update(cost_params)
-      redirect_to @transportation_modal, notice: 'Preço atualizado com sucesso.'
+      redirect_to @transportation_modal, notice: t(:cost_updated)
     else
-      flash.now[:alert] = 'Não foi possível atualizar o preço.'
+      flash.now[:alert] = t(:cost_updated)
       render 'edit'
     end
   end

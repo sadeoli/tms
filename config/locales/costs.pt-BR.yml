@@ -1,6 +1,10 @@
 pt-BR:
   weight: "Peso (kg)"
   distance: "Distância (km)"
+  cost_created: 'Preço cadastrado com sucesso.'
+  cost_not_created: 'Preço não cadastrado.'
+  cost_updated: 'Preço atualizado com sucesso.'
+  cost_not_updated: 'Não foi possível atualizar o preço.'
   activerecord:
     models:
       cost: 

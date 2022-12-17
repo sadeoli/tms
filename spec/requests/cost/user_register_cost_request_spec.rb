@@ -59,7 +59,9 @@ describe 'Usuário cria uma configuração de preço' do
 
       # Act
       login_as(user)
-      post(transportation_modal_costs_path(transportation_modal.id), params: { cost: { category: :distance, minimum: 5, maximum: 10, unit_price: 30,
+      post(transportation_modal_costs_path(transportation_modal.id), params: { cost: { category: :distance,
+                                                                                       minimum: 5, maximum: 10,
+                                                                                       unit_price: 30,
                                                                                        transportation_modal: } })
 
       # Assert
@@ -74,7 +76,9 @@ describe 'Usuário cria uma configuração de preço' do
 
       # Act
       login_as(user)
-      post(transportation_modal_costs_path(transportation_modal.id), params: { cost: { category: :distance, minimum: 5, maximum: 10, unit_price: 30,
+      post(transportation_modal_costs_path(transportation_modal.id), params: { cost: { category: :distance,
+                                                                                       minimum: 5, maximum: 10,
+                                                                                       unit_price: 30,
                                                                                        transportation_modal: } })
 
       # Assert
@@ -88,7 +92,9 @@ describe 'Usuário cria uma configuração de preço' do
                                                          max_weight: 8, min_weight: 0, flat_rate: 5, status: :active)
 
       # Act
-      post(transportation_modal_costs_path(transportation_modal.id), params: { cost: { category: :distance, minimum: 5, maximum: 10, unit_price: 30,
+      post(transportation_modal_costs_path(transportation_modal.id), params: { cost: { category: :distance,
+                                                                                       minimum: 5, maximum: 10,
+                                                                                       unit_price: 30,
                                                                                        transportation_modal: } })
 
       # Assert

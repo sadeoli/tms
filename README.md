@@ -16,6 +16,7 @@ As gems presentes do projeto são:
 2. Gem "capybara" - Realização de testes
 3. Gem "devise" - Auxílio na gestão de usuários e autenticação
 4. Gem 'rails-controller-testing' - Realização de testes de request: Verificação de templates.
+5. Gem 'rubocop' e extensões - Análise de código quanto boas práticas
 
 
 ___Usuários
@@ -23,4 +24,5 @@ Caso não tenha utilizado o db:seeds, será necessário cadastrar os usuários a
 
 Sugestão de criação - Utilizar esses mesmos e-mails e senhas para acesso: 
 #User.create!(name: 'Usuário Regular 1', email: 'regular1@sistemadefrete.com.br', password: 'password', access_group: :regular)
+
 #User.create!(name: 'Usuário Admin 1', email: 'admin1@sistemadefrete.com.br', password: 'password', access_group: :admin)

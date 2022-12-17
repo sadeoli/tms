@@ -3,7 +3,7 @@
 class ServiceOrdersController < ApplicationController
   before_action :set_service_order, only: %i[show calculated closed edit update]
   before_action only: %i[new create update edit] do
-    redirect_to root_path, alert: 'ACESSO NEGADO' unless current_user&.admin?
+    redirect_to root_path, alert: t(:access_denied) unless current_user&.admin?
   end
 
   def index
@@ -14,8 +14,7 @@ class ServiceOrdersController < ApplicationController
     @calculations = Calculation.where(service_order: @service_order)
     return unless @calculations.empty?
 
-    flash.now[:alert] =
-      'Não há modalidade de transporte e/ou configuração de tarifas que atendam essa ordem de serviço.'
+    flash.now[:alert] = t(:calculation_error)
   end
 
   def new
@@ -27,18 +26,18 @@ class ServiceOrdersController < ApplicationController
   def create
     @service_order = ServiceOrder.new(service_order_params)
     if @service_order.save
-      redirect_to service_orders_path, notice: 'Ordem de serviço cadastrado com sucesso.'
+      redirect_to service_orders_path, notice: t(:service_order_created)
     else
-      flash.now[:alert] = 'Ordem de serviço não cadastrado.'
+      flash.now[:alert] = t(:service_order_not_created)
       render 'new'
     end
   end
 
   def update
     if @service_order.update(service_order_params)
-      redirect_to @service_order, notice: 'Ordem de serviço atualizada com sucesso.'
+      redirect_to @service_order, notice: t(:service_order_updated)
     else
-      flash.now[:notice] = 'Não foi possível atualizar a ordem de serviço.'
+      flash.now[:notice] = t(:service_order_not_updated)
       render 'edit'
     end
   end
@@ -65,9 +64,9 @@ class ServiceOrdersController < ApplicationController
     return unless @service_order.nil?
 
     if user_signed_in?
-      redirect_to service_orders_path, alert: 'Não foi possível encontrar o pedido.'
+      redirect_to service_orders_path, alert: t(:service_order_not_found)
     else
-      redirect_to root_path, alert: 'Não foi possível encontrar o pedido.'
+      redirect_to root_path, alert: t(:service_order_not_found)
     end
   end
 
@@ -79,6 +78,7 @@ class ServiceOrdersController < ApplicationController
 
   def service_order_params
     params.require(:service_order).permit(:pickup_address, :product_code, :weight, :width, :height,
-                                          :depth, :recipient_name, :recipient_address, :recipient_phone, :distance, :delay_reason)
+                                          :depth, :recipient_name, :recipient_address, :recipient_phone,
+                                          :distance, :delay_reason)
   end
 end

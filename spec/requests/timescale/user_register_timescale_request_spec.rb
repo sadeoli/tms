@@ -59,8 +59,10 @@ describe 'Usuário cria uma configuração de prazo' do
 
       # Act
       login_as(user)
-      post(transportation_modal_timescales_path(transportation_modal.id), params: { timescale: { min_distance: 1, max_distance: 10, deadline: 24,
-                                                                                                 transportation_modal: } })
+      post(transportation_modal_timescales_path(transportation_modal.id), params: { timescale: { min_distance: 1,
+                                                                                                 max_distance: 10,
+                                                                                                 transportation_modal:,
+                                                                                                 deadline: 24 } })
 
       # Assert
       expect(response).to redirect_to root_path
@@ -74,8 +76,10 @@ describe 'Usuário cria uma configuração de prazo' do
 
       # Act
       login_as(user)
-      post(transportation_modal_timescales_path(transportation_modal.id), params: { timescale: { min_distance: 1, max_distance: 10, deadline: 24,
-                                                                                                 transportation_modal: } })
+      post(transportation_modal_timescales_path(transportation_modal.id), params: { timescale: { min_distance: 1,
+                                                                                                 max_distance: 10,
+                                                                                                 transportation_modal:,
+                                                                                                 deadline: 24 } })
 
       # Assert
       expect(response).not_to redirect_to root_path
@@ -88,8 +92,10 @@ describe 'Usuário cria uma configuração de prazo' do
                                                          max_weight: 8, min_weight: 0, flat_rate: 5, status: :active)
 
       # Act
-      post(transportation_modal_timescales_path(transportation_modal.id), params: { timescale: { min_distance: 1, max_distance: 10, deadline: 24,
-                                                                                                 transportation_modal: } })
+      post(transportation_modal_timescales_path(transportation_modal.id), params: { timescale: { min_distance: 1,
+                                                                                                 max_distance: 10,
+                                                                                                 transportation_modal:,
+                                                                                                 deadline: 24 } })
 
       # Assert
       expect(response).to redirect_to user_session_path

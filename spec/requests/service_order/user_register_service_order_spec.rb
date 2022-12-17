@@ -52,8 +52,9 @@ describe 'Usuário cria uma ordem de serviço' do
       # Act
       login_as(user)
       post(service_orders_path, params: { service_order: { pickup_address: 'Rua das Amoras, 52 - Campinas/SP',
-                                                           product_code: 'CX124060', weight: 5, width: 20, height: 40, depth: 50,
-                                                           recipient_name: 'Maria Carvalho', recipient_address: 'Rua das Laranjeiras, 15 - Campinas/SP',
+                                                           product_code: 'CX124060', weight: 5, width: 20, height: 40,
+                                                           recipient_name: 'Maria Carvalho', depth: 50,
+                                                           recipient_address: 'Rua das Laranjeiras, 15 - Campinas/SP',
                                                            recipient_phone: '019985463251', distance: 7 } })
 
       # Assert
@@ -67,8 +68,9 @@ describe 'Usuário cria uma ordem de serviço' do
       # Act
       login_as(user)
       post(service_orders_path, params: { service_order: { pickup_address: 'Rua das Amoras, 52 - Campinas/SP',
-                                                           product_code: 'CX124060', weight: 5, width: 20, height: 40, depth: 50,
-                                                           recipient_name: 'Maria Carvalho', recipient_address: 'Rua das Laranjeiras, 15 - Campinas/SP',
+                                                           product_code: 'CX124060', weight: 5, width: 20, height: 40,
+                                                           recipient_name: 'Maria Carvalho', depth: 50,
+                                                           recipient_address: 'Rua das Laranjeiras, 15 - Campinas/SP',
                                                            recipient_phone: '019985463251', distance: 7 } })
 
       # Assert
@@ -81,8 +83,9 @@ describe 'Usuário cria uma ordem de serviço' do
 
       # Act
       post(service_orders_path, params: { service_order: { pickup_address: 'Rua das Amoras, 52 - Campinas/SP',
-                                                           product_code: 'CX124060', weight: 5, width: 20, height: 40, depth: 50,
-                                                           recipient_name: 'Maria Carvalho', recipient_address: 'Rua das Laranjeiras, 15 - Campinas/SP',
+                                                           product_code: 'CX124060', weight: 5, width: 20, height: 40,
+                                                           recipient_name: 'Maria Carvalho', depth: 50,
+                                                           recipient_address: 'Rua das Laranjeiras, 15 - Campinas/SP',
                                                            recipient_phone: '019985463251', distance: 7 } })
 
       # Assert

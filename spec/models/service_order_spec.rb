@@ -8,7 +8,8 @@ RSpec.describe ServiceOrder do
       # Arrange
       service_order = described_class.new(pickup_address: 'Rua das Amoras, 52 - Campinas/SP',
                                           product_code: 'CX124060', weight: 5, width: 20, height: 40, depth: 50,
-                                          recipient_name: 'Maria Carvalho', recipient_address: 'Rua das Laranjeiras, 15 - Campinas/SP',
+                                          recipient_name: 'Maria Carvalho',
+                                          recipient_address: 'Rua das Laranjeiras, 15 - Campinas/SP',
                                           recipient_phone: '019985463251', distance: 7)
 
       # Act
@@ -24,11 +25,13 @@ RSpec.describe ServiceOrder do
       # Arrange
       service_order = described_class.new(pickup_address: 'Rua das Amoras, 52 - Campinas/SP',
                                           product_code: 'CX124060', weight: 5, width: 20, height: 40, depth: 50,
-                                          recipient_name: 'Maria Carvalho', recipient_address: 'Rua das Laranjeiras, 15 - Campinas/SP',
+                                          recipient_name: 'Maria Carvalho',
+                                          recipient_address: 'Rua das Laranjeiras, 15 - Campinas/SP',
                                           recipient_phone: '019985463251', distance: 7)
-      other_service_order = described_class.create!(pickup_address: 'R. França, 539 - Jardim Europa, São Paulo - SP, 01446-010',
-                                                    product_code: 'CX752169', weight: 15, width: 50, height: 70, depth: 70, recipient_name: 'Francisco Quintal',
-                                                    recipient_address: 'R. Sebastião Walter Fusco, 309 - Cidade Soinco, Guarulhos - SP, 07182-230',
+      other_service_order = described_class.create!(pickup_address: 'R. França, 539 - Jardim Europa, São Paulo - SP',
+                                                    product_code: 'CX752169', weight: 15, width: 50, height: 70,
+                                                    depth: 70, recipient_name: 'Francisco Quintal',
+                                                    recipient_address: 'R. Fusco, 309 - Soinco, Guarulhos/SP',
                                                     recipient_phone: '011987523648', distance: 30)
 
       # Act
@@ -42,7 +45,8 @@ RSpec.describe ServiceOrder do
       # Arrange
       service_order = described_class.create!(pickup_address: 'Rua das Amoras, 52 - Campinas/SP',
                                               product_code: 'CX124060', weight: 5, width: 20, height: 40, depth: 50,
-                                              recipient_name: 'Maria Carvalho', recipient_address: 'Rua das Laranjeiras, 15 - Campinas/SP',
+                                              recipient_name: 'Maria Carvalho',
+                                              recipient_address: 'Rua das Laranjeiras, 15 - Campinas/SP',
                                               recipient_phone: '019985463251', distance: 7)
       original_code = service_order.code
 
@@ -61,7 +65,8 @@ RSpec.describe ServiceOrder do
                                                          max_weight: 8, min_weight: 0, flat_rate: 5, status: :active)
       service_order = described_class.create!(pickup_address: 'Rua das Amoras, 52 - Campinas/SP',
                                               product_code: 'CX124060', weight: 5, width: 20, height: 40, depth: 50,
-                                              recipient_name: 'Maria Carvalho', recipient_address: 'Rua das Laranjeiras, 15 - Campinas/SP',
+                                              recipient_name: 'Maria Carvalho',
+                                              recipient_address: 'Rua das Laranjeiras, 15 - Campinas/SP',
                                               recipient_phone: '019985463251', distance: 7)
       Cost.create!(category: :distance, minimum: 5, maximum: 10, unit_price: 3,
                    transportation_modal:)
@@ -83,7 +88,8 @@ RSpec.describe ServiceOrder do
                                                          max_weight: 8, min_weight: 0, flat_rate: 5, status: :inactive)
       service_order = described_class.create!(pickup_address: 'Rua das Amoras, 52 - Campinas/SP',
                                               product_code: 'CX124060', weight: 5, width: 20, height: 40, depth: 50,
-                                              recipient_name: 'Maria Carvalho', recipient_address: 'Rua das Laranjeiras, 15 - Campinas/SP',
+                                              recipient_name: 'Maria Carvalho',
+                                              recipient_address: 'Rua das Laranjeiras, 15 - Campinas/SP',
                                               recipient_phone: '019985463251', distance: 7)
       Cost.create!(category: :distance, minimum: 5, maximum: 10, unit_price: 3,
                    transportation_modal:)
@@ -107,7 +113,8 @@ RSpec.describe ServiceOrder do
         # Arrange
         service_order = described_class.new(pickup_address: '',
                                             product_code: 'CX124060', weight: 5, width: 20, height: 40, depth: 50,
-                                            recipient_name: 'Maria Carvalho', recipient_address: 'Rua das Laranjeiras, 15 - Campinas/SP',
+                                            recipient_name: 'Maria Carvalho',
+                                            recipient_address: 'Rua das Laranjeiras, 15 - Campinas/SP',
                                             recipient_phone: '019985463251', distance: 7)
 
         # Act
@@ -121,7 +128,8 @@ RSpec.describe ServiceOrder do
         # Arrange
         service_order = described_class.new(pickup_address: 'Rua das Amoras, 52 - Campinas/SP',
                                             product_code: '', weight: 5, width: 20, height: 40, depth: 50,
-                                            recipient_name: 'Maria Carvalho', recipient_address: 'Rua das Laranjeiras, 15 - Campinas/SP',
+                                            recipient_name: 'Maria Carvalho',
+                                            recipient_address: 'Rua das Laranjeiras, 15 - Campinas/SP',
                                             recipient_phone: '019985463251', distance: 7)
 
         # Act
@@ -135,7 +143,8 @@ RSpec.describe ServiceOrder do
         # Arrange
         service_order = described_class.new(pickup_address: 'Rua das Amoras, 52 - Campinas/SP',
                                             product_code: 'CX124060', weight: nil, width: 20, height: 40, depth: 50,
-                                            recipient_name: 'Maria Carvalho', recipient_address: 'Rua das Laranjeiras, 15 - Campinas/SP',
+                                            recipient_name: 'Maria Carvalho',
+                                            recipient_address: 'Rua das Laranjeiras, 15 - Campinas/SP',
                                             recipient_phone: '019985463251', distance: 7)
 
         # Act
@@ -149,7 +158,8 @@ RSpec.describe ServiceOrder do
         # Arrange
         service_order = described_class.new(pickup_address: 'Rua das Amoras, 52 - Campinas/SP',
                                             product_code: 'CX124060', weight: 5, width: nil, height: 40, depth: 50,
-                                            recipient_name: 'Maria Carvalho', recipient_address: 'Rua das Laranjeiras, 15 - Campinas/SP',
+                                            recipient_name: 'Maria Carvalho',
+                                            recipient_address: 'Rua das Laranjeiras, 15 - Campinas/SP',
                                             recipient_phone: '019985463251', distance: 7)
 
         # Act
@@ -163,7 +173,8 @@ RSpec.describe ServiceOrder do
         # Arrange
         service_order = described_class.new(pickup_address: 'Rua das Amoras, 52 - Campinas/SP',
                                             product_code: 'CX124060', weight: 5, width: 20, height: nil, depth: 50,
-                                            recipient_name: 'Maria Carvalho', recipient_address: 'Rua das Laranjeiras, 15 - Campinas/SP',
+                                            recipient_name: 'Maria Carvalho',
+                                            recipient_address: 'Rua das Laranjeiras, 15 - Campinas/SP',
                                             recipient_phone: '019985463251', distance: 7)
 
         # Act
@@ -177,7 +188,8 @@ RSpec.describe ServiceOrder do
         # Arrange
         service_order = described_class.new(pickup_address: 'Rua das Amoras, 52 - Campinas/SP',
                                             product_code: 'CX124060', weight: 5, width: 20, height: 40, depth: nil,
-                                            recipient_name: 'Maria Carvalho', recipient_address: 'Rua das Laranjeiras, 15 - Campinas/SP',
+                                            recipient_name: 'Maria Carvalho',
+                                            recipient_address: 'Rua das Laranjeiras, 15 - Campinas/SP',
                                             recipient_phone: '019985463251', distance: 7)
 
         # Act
@@ -191,7 +203,8 @@ RSpec.describe ServiceOrder do
         # Arrange
         service_order = described_class.new(pickup_address: 'Rua das Amoras, 52 - Campinas/SP',
                                             product_code: 'CX124060', weight: 5, width: 20, height: 40, depth: 50,
-                                            recipient_name: '', recipient_address: 'Rua das Laranjeiras, 15 - Campinas/SP',
+                                            recipient_name: '',
+                                            recipient_address: 'Rua das Laranjeiras, 15 - Campinas/SP',
                                             recipient_phone: '019985463251', distance: 7)
 
         # Act
@@ -219,7 +232,8 @@ RSpec.describe ServiceOrder do
         # Arrange
         service_order = described_class.new(pickup_address: 'Rua das Amoras, 52 - Campinas/SP',
                                             product_code: 'CX124060', weight: 5, width: 20, height: 40, depth: 50,
-                                            recipient_name: 'Maria Carvalho', recipient_address: 'Rua das Laranjeiras, 15 - Campinas/SP',
+                                            recipient_name: 'Maria Carvalho',
+                                            recipient_address: 'Rua das Laranjeiras, 15 - Campinas/SP',
                                             recipient_phone: '', distance: 7)
 
         # Act
@@ -233,7 +247,8 @@ RSpec.describe ServiceOrder do
         # Arrange
         service_order = described_class.new(pickup_address: 'Rua das Amoras, 52 - Campinas/SP',
                                             product_code: 'CX124060', weight: 5, width: 20, height: 40, depth: 50,
-                                            recipient_name: 'Maria Carvalho', recipient_address: 'Rua das Laranjeiras, 15 - Campinas/SP',
+                                            recipient_name: 'Maria Carvalho',
+                                            recipient_address: 'Rua das Laranjeiras, 15 - Campinas/SP',
                                             recipient_phone: '019985463251', distance: nil)
 
         # Act
@@ -249,7 +264,8 @@ RSpec.describe ServiceOrder do
         # Arrange
         service_order = described_class.new(pickup_address: 'Rua das Amoras, 52 - Campinas/SP',
                                             product_code: 'CX124060', weight: 0, width: 20, height: 40, depth: 50,
-                                            recipient_name: 'Maria Carvalho', recipient_address: 'Rua das Laranjeiras, 15 - Campinas/SP',
+                                            recipient_name: 'Maria Carvalho',
+                                            recipient_address: 'Rua das Laranjeiras, 15 - Campinas/SP',
                                             recipient_phone: '019985463251', distance: 7)
 
         # Act
@@ -263,7 +279,8 @@ RSpec.describe ServiceOrder do
         # Arrange
         service_order = described_class.new(pickup_address: 'Rua das Amoras, 52 - Campinas/SP',
                                             product_code: 'CX124060', weight: 5, width: 20, height: 0, depth: 50,
-                                            recipient_name: 'Maria Carvalho', recipient_address: 'Rua das Laranjeiras, 15 - Campinas/SP',
+                                            recipient_name: 'Maria Carvalho',
+                                            recipient_address: 'Rua das Laranjeiras, 15 - Campinas/SP',
                                             recipient_phone: '019985463251', distance: 7)
 
         # Act
@@ -277,7 +294,8 @@ RSpec.describe ServiceOrder do
         # Arrange
         service_order = described_class.new(pickup_address: 'Rua das Amoras, 52 - Campinas/SP',
                                             product_code: 'CX124060', weight: 5, width: 0, height: 40, depth: 50,
-                                            recipient_name: 'Maria Carvalho', recipient_address: 'Rua das Laranjeiras, 15 - Campinas/SP',
+                                            recipient_name: 'Maria Carvalho',
+                                            recipient_address: 'Rua das Laranjeiras, 15 - Campinas/SP',
                                             recipient_phone: '019985463251', distance: 7)
 
         # Act
@@ -291,7 +309,8 @@ RSpec.describe ServiceOrder do
         # Arrange
         service_order = described_class.new(pickup_address: 'Rua das Amoras, 52 - Campinas/SP',
                                             product_code: 'CX124060', weight: 5, width: 20, height: 40, depth: 0,
-                                            recipient_name: 'Maria Carvalho', recipient_address: 'Rua das Laranjeiras, 15 - Campinas/SP',
+                                            recipient_name: 'Maria Carvalho',
+                                            recipient_address: 'Rua das Laranjeiras, 15 - Campinas/SP',
                                             recipient_phone: '019985463251', distance: 7)
 
         # Act
@@ -305,7 +324,8 @@ RSpec.describe ServiceOrder do
         # Arrange
         service_order = described_class.new(pickup_address: 'Rua das Amoras, 52 - Campinas/SP',
                                             product_code: 'CX124060', weight: 5, width: 20, height: 40, depth: 50,
-                                            recipient_name: 'Maria Carvalho', recipient_address: 'Rua das Laranjeiras, 15 - Campinas/SP',
+                                            recipient_name: 'Maria Carvalho',
+                                            recipient_address: 'Rua das Laranjeiras, 15 - Campinas/SP',
                                             recipient_phone: '019985463251', distance: 0)
 
         # Act
@@ -322,8 +342,10 @@ RSpec.describe ServiceOrder do
       # Arrange
       service_order = described_class.create!(pickup_address: 'Rua das Amoras, 52 - Campinas/SP',
                                               product_code: 'CX124060', weight: 5, width: 20, height: 40, depth: 50,
-                                              recipient_name: 'Maria Carvalho', recipient_address: 'Rua das Laranjeiras, 15 - Campinas/SP',
-                                              recipient_phone: '019985463251', distance: 7, delivery_time: 24, ship_date: 1.day.ago)
+                                              recipient_name: 'Maria Carvalho',
+                                              recipient_address: 'Rua das Laranjeiras, 15 - Campinas/SP',
+                                              recipient_phone: '019985463251', distance: 7, delivery_time: 24,
+                                              ship_date: 1.day.ago)
       original_delivery_date = service_order.delivery_date
 
       # Act
@@ -339,8 +361,10 @@ RSpec.describe ServiceOrder do
       # Arrange
       service_order = described_class.create!(pickup_address: 'Rua das Amoras, 52 - Campinas/SP',
                                               product_code: 'CX124060', weight: 5, width: 20, height: 40, depth: 50,
-                                              recipient_name: 'Maria Carvalho', recipient_address: 'Rua das Laranjeiras, 15 - Campinas/SP',
-                                              recipient_phone: '019985463251', distance: 7, delivery_time: 48, ship_date: 1.day.ago)
+                                              recipient_name: 'Maria Carvalho',
+                                              recipient_address: 'Rua das Laranjeiras, 15 - Campinas/SP',
+                                              recipient_phone: '019985463251', distance: 7, delivery_time: 48,
+                                              ship_date: 1.day.ago)
 
       # Act
       service_order.close
@@ -354,8 +378,10 @@ RSpec.describe ServiceOrder do
       # Arrange
       service_order = described_class.create!(pickup_address: 'Rua das Amoras, 52 - Campinas/SP',
                                               product_code: 'CX124060', weight: 5, width: 20, height: 40, depth: 50,
-                                              recipient_name: 'Maria Carvalho', recipient_address: 'Rua das Laranjeiras, 15 - Campinas/SP',
-                                              recipient_phone: '019985463251', distance: 7, delivery_time: 24, ship_date: 2.days.ago)
+                                              recipient_name: 'Maria Carvalho',
+                                              recipient_address: 'Rua das Laranjeiras, 15 - Campinas/SP',
+                                              recipient_phone: '019985463251', distance: 7, delivery_time: 24,
+                                              ship_date: 2.days.ago)
 
       # Act
       service_order.close

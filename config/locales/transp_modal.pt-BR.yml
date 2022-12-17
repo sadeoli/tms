@@ -1,6 +1,10 @@
 pt-BR:
   active: "Ativo"
   inactive: "Inativo"
+  transportation_modal_created: 'Modalidade de transporte cadastrada com sucesso.'
+  transportation_modal_not_created: 'Modalidade de transporte não cadastrada.'
+  transportation_modal_updated: 'Modalidade de transporte atualizada com sucesso.'
+  transportation_modal_not_updated: 'Não foi possível atualizar a modalidade de transporte.'
   activerecord:
     models:
       transportation_modal: 

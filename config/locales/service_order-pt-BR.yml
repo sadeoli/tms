@@ -6,6 +6,13 @@ pt-BR:
   transportation_modal: 'Modalidade de Transporte'
   transportation_modal_id: 'Modalidade de Transporte'
   result: 'Preço'
+  service_order_created: 'Ordem de serviço cadastrada com sucesso.'
+  service_order_not_created: 'Ordem de serviço não cadastrada.'
+  service_order_updated: 'Ordem de serviço atualizada com sucesso.'
+  service_order_not_updated: 'Não foi possível atualizar a ordem de serviço.'
+  service_order_not_found: 'Não foi possível encontrar o pedido.'
+  calculation_error: 'Não há modalidade de transporte e/ou configuração de tarifas que atendam essa ordem de serviço.'
+  so_started: 'Ordem de serviço iniciada.'
   activerecord:
     models:
       service_order: 

@@ -77,8 +77,6 @@ RSpec.describe Vehicle do
 
       it 'false when transportation_modal is empty' do
         # Arrange
-        transportation_modal = TransportationModal.create!(name: 'Bicicleta', max_distance: 10, min_distance: 1,
-                                                           max_weight: 8, min_weight: 0, flat_rate: 5, status: :active)
         vehicle = described_class.new(license_plate: 'HUIK-5232', model: 'City Tour', brand: 'Caloi', max_weight: '5',
                                       manufacture_year: '2015', transportation_modal: nil, status: :working)
 
@@ -109,8 +107,8 @@ RSpec.describe Vehicle do
         # Arrange
         transportation_modal = TransportationModal.create!(name: 'Bicicleta', max_distance: 10, min_distance: 1,
                                                            max_weight: 8, min_weight: 0, flat_rate: 5, status: :active)
-        vehicle2 = described_class.create!(license_plate: 'HUIK-5232', model: 'City Tour', brand: 'Caloi', max_weight: '5',
-                                           manufacture_year: '2015', transportation_modal:, status: :working)
+        described_class.create!(license_plate: 'HUIK-5232', model: 'City Tour', brand: 'Caloi', max_weight: '5',
+                                manufacture_year: '2015', transportation_modal:, status: :working)
         vehicle = described_class.new(license_plate: 'HUIK-5232', model: 'Speed Track', brand: 'Caloi', max_weight: 7,
                                       manufacture_year: 2017, transportation_modal:, status: :working)
         # Act

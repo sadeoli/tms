@@ -93,8 +93,8 @@ RSpec.describe TransportationModal do
     context 'uniqueness' do
       it 'false when name is already in use' do
         # Arrange
-        transportation_modal1 = described_class.create!(name: 'Bicicleta', max_distance: 10, min_distance: 1,
-                                                        max_weight: 8, min_weight: 0, flat_rate: 5, status: :active)
+        described_class.create!(name: 'Bicicleta', max_distance: 10, min_distance: 1,
+                                max_weight: 8, min_weight: 0, flat_rate: 5, status: :active)
         transportation_modal2 = described_class.new(name: 'Bicicleta', max_distance: 9, min_distance: 2,
                                                     max_weight: 9, min_weight: 1, flat_rate: 7, status: :active)
 
